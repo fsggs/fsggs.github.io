@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html manifest="cache.manifest" lang="en_US">
 	<head>
 		<meta charset="utf-8">
-		<title>Test Page</title>
+		<title>Loading...</title>
+        <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css" />
+        <link href="css/main.css" rel="stylesheet" />
+        <script type="application/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="application/javascript" src="js/jquery.mCustomScrollbar.min.js"></script>
+        <script type="application/javascript" src="js/main.js"></script>
 	</head>
 	<body>
-		<p>Test Page</p>
+        <console>
+            <div id="console-panel">
+                <p class="message">[Launcher]: Launcher started...</p>
+            </div>
+            <div id="console-input">
+                <input type="text" placeholder="Command here..."/>
+            </div>
+        </console>
+		<launcher>
+            <div class="splash_screen">
+                <div class="loader"></div>
+                <div class="loader-status">
+
+                </div>
+            </div>
+        </launcher>
+        <game>
+            <link href="html5/game.html" rel="import" />
+        </game>
 	</body>
 </html>

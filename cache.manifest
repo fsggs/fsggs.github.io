@@ -1,0 +1,20 @@
+CACHE MANIFEST
+# Версия 1.0.0.0001
+
+index.html
+
+CACHE:
+html5/game.html
+
+css/jquery.mCustomScrollbar.css
+css/main.css
+
+js/jquery-2.1.1.min.js
+js/jquery.mCustomScrollbar.min.js
+js/main.js
+
+img/mCSB_buttons.png
+img/cursors/default.cur
+
+NETWORK:
+gate.json
