@@ -45,6 +45,7 @@ jQuery(document).keydown(function (event) {
 			break;
 		case 116: //F5
 			window.applicationCache.update();
+			console.log('Verifing application version.');
 			event.preventDefault();
 			break;
 		case 27: //ESC
