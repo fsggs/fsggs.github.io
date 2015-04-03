@@ -1,20 +1,35 @@
 CACHE MANIFEST
-# Версия 1.0.0.0001
+# Версия 1.0.0.0002
 
+favicon.ico
 index.html
 
 CACHE:
-html5/game.html
+assets/css/jquery.mCustomScrollbar.css
 
-css/jquery.mCustomScrollbar.css
-css/main.css
+assets/css/main.css
+assets/css/client.css
 
-js/jquery-2.1.1.min.js
-js/jquery.mCustomScrollbar.min.js
-js/main.js
+assets/js/jquery-2.1.1.min.js
+assets/js/jquery.draggable.js
 
-img/mCSB_buttons.png
-img/cursors/default.cur
+assets/js/jquery.storage.js
+assets/js/jquery.audio.api.js
+assets/js/jquery.audio.js
+assets/js/jquery.sound.js
+assets/js/jquery.media.js
+
+assets/js/main.js
+
+assets/js/jquery.mCustomScrollbar.min.js
+
+assets/img/mCSB_buttons.png
+assets/img/cursors/default.cur
+assets/img/launcher.logo.png
+assets/img/launcher.spin.png
 
 NETWORK:
+*
 gate.json
+
+

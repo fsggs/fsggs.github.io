@@ -8,9 +8,6 @@ if (!jQuery) {
 }
 
 var cache;
-// Переменные прогресса
-var progress_value = 0;
-var progress_max = 1;
 
 /**
  * Скроллбар
@@ -23,6 +20,17 @@ jQuery(window).load(function () {
 });
 
 /**
+ * Drag окошек
+ */
+jQuery(document).ready(function () {
+	jQuery('.draggable').draggable();
+});
+
+jQuery(document).on('click', '.draggable > .close', function () {
+	jQuery(this).parent().hide();
+});
+
+/**
  * Перехватчик нажатий на клавиши
  */
 jQuery(document).keydown(function (event) {
@@ -32,14 +40,14 @@ jQuery(document).keydown(function (event) {
 			if (!jQuery('input:focus').length
 				|| jQuery('#console-input > input:focus').length) {
 				event.preventDefault();
-				if(jQuery('console').is(':hidden')){
-					jQuery('console').show();
+				if (jQuery('section.console').is(':hidden')) {
+					jQuery('section.console').show();
 					jQuery('#console-input').find('> input').focus();
-					jQuery("#console-panel").mCustomScrollbar('scrollTo', 'last',{
+					jQuery("#console-panel").mCustomScrollbar('scrollTo', 'last', {
 						scrollInertia: 0
 					});
 				} else {
-					jQuery('console').hide();
+					jQuery('section.console').hide();
 				}
 			}
 			break;
@@ -49,7 +57,7 @@ jQuery(document).keydown(function (event) {
 			event.preventDefault();
 			break;
 		case 27: //ESC
-			if (!jQuery('console').is(':hidden')) {
+			if (!jQuery('section.console').is(':hidden')) {
 				event.preventDefault();
 				jQuery('console').hide();
 			}
@@ -62,7 +70,7 @@ jQuery(document).keydown(function (event) {
 					jQuery('#console-input > input').val('');
 					jQuery('#console-panel .mCSB_container')
 						.append('<p class="message">[Console]: ' + message + '</p>');
-					jQuery("#console-panel").mCustomScrollbar('scrollTo','last');
+					jQuery("#console-panel").mCustomScrollbar('scrollTo', 'last');
 				}
 			}
 			break;
@@ -72,7 +80,7 @@ jQuery(document).keydown(function (event) {
 /**
  * Application Cache Loader
  */
-jQuery(function() {
+jQuery(function () {
 	// Проверяем подключение
 	if (navigator.onLine) {
 		console.log('Connectiong to update server establishment.');
@@ -84,43 +92,61 @@ jQuery(function() {
 	cache = window.applicationCache;
 	if (cache) {
 		// Ресурсы уже кэшированнны.
-		cache.addEventListener('cached', function(e) {
+		cache.addEventListener('cached', function (e) {
 			ProgressHide();
 		}, false);
 		// Начало скачивания ресурсов. progress_max - количество ресурсов.
-		cache.addEventListener('downloading', function(e) {
+		cache.addEventListener('downloading', function (e) {
 			ProgressShow();
-			//progress_max = 3;
 		}, false);
 		// Процесс скачивания ресурсов. Индикатор прогресса изменяется
-		cache.addEventListener('progress', function(e) {
-			ProgressChange();
-		},	false);
+		cache.addEventListener('progress', function (e) {
+			ProgressChange(e);
+		}, false);
 		// Скачивание ресурсов завершено. Обновляем кэш. Перезагружаем страницу.
-		cache.addEventListener('updateready', function(e) {
+		cache.addEventListener('updateready', function (e) {
 			ProgressHide();
 			window.applicationCache.swapCache();
 			location.reload();
 		}, false);
+		cache.addEventListener('noupdate', function (e) {
+			ProgressHide();
+		}, false)
 	}
 });
+//------------------- Функции клиента ----------------//
+var loadMainClientScreen = function () {
+	jQuery('section.client').load('client/client.html', function () {
+		jQuery(this).fadeIn('slow');
+	});
+	jQuery('title').html('Client loaded');
+};
+//------------------- Функции клиента ----------------//
 
 //------------------- Функции управлением экраном загрузки ----------------//
-function ProgressShow() {
-	//jQuery("#progressbar").show(300);
-	//progress_value = 0;
+function launcherSpin(prc, animate) {
+	var $spin = jQuery('section.launcher > .splash_screen > .loader > .loader-status > .spin');
+	if (animate) {
+		$spin.animate({
+			width: prc + '%'
+		}, 500);
+	} else {
+		$spin.width(prc + '%');
+	}
 }
 
-function ProgressChange() {
-	//progress_value++;
-	//jQuery("#progress").attr({
-	//	max: progress_max,
-	//	value: progress_value
-	//});
+function ProgressShow() {
+	launcherSpin(0, false);
+}
+
+function ProgressChange(e) {
+	launcherSpin(Math.round(e.loaded / e.total * 100), true);
 }
 
 function ProgressHide() {
-	//jQuery("#progressbar").hide(300);
+	launcherSpin(100, true);
+	jQuery('section.launcher').delay(1000).hide(300);
+	loadMainClientScreen();
 }
 //-------------------------------------------------------------------------//
 
