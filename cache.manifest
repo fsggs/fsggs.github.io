@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Версия 1.0.0.0002
+# Версия 1.0.0.0003
 
 favicon.ico
 index.html
@@ -31,5 +31,3 @@ assets/img/launcher.spin.png
 NETWORK:
 *
 gate.json
-
-

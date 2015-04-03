@@ -124,14 +124,15 @@ var loadMainClientScreen = function () {
 //------------------- Функции клиента ----------------//
 
 //------------------- Функции управлением экраном загрузки ----------------//
-function launcherSpin(prc, animate) {
+function launcherSpin(prc, animate, callback) {
 	var $spin = jQuery('section.launcher > .splash_screen > .loader > .loader-status > .spin');
 	if (animate) {
 		$spin.animate({
 			width: prc + '%'
-		}, 500);
+		}, 500, callback);
 	} else {
 		$spin.width(prc + '%');
+		if(callback != 'undefined') callback();
 	}
 }
 
@@ -144,9 +145,10 @@ function ProgressChange(e) {
 }
 
 function ProgressHide() {
-	launcherSpin(100, true);
-	jQuery('section.launcher').delay(1000).hide(300);
-	loadMainClientScreen();
+	launcherSpin(100, true, function () {
+		jQuery('section.launcher').delay(1000).hide(300);
+		loadMainClientScreen();
+	});
 }
 //-------------------------------------------------------------------------//
 
