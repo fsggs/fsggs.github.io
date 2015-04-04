@@ -42,7 +42,7 @@
 				p_pos_x2 = $parent.offset().left + p_drg_w - drg_w - 5;
 
 			$(document).on("mousemove", function (e) {
-				if(!parent){
+				if (!parent) {
 					$selected.offset({
 						top: e.pageY + pos_y - drg_h,
 						left: e.pageX + pos_x - drg_w

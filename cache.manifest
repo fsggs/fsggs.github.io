@@ -1,33 +1,27 @@
 CACHE MANIFEST
-# Версия 1.0.0.0003
+# Версия 1.0.0.0004
 
-favicon.ico
-index.html
+./favicon.ico
+./index.html
 
 CACHE:
-assets/css/jquery.mCustomScrollbar.css
+./assets/css/libs/jquery.mCustomScrollbar.css
 
-assets/css/main.css
-assets/css/client.css
+./assets/css/main.css
+./assets/css/client.css
 
-assets/js/jquery-2.1.1.min.js
-assets/js/jquery.draggable.js
+./assets/js/libs/jquery-2.1.3.min.js
+./assets/js/libs/jquery.draggable.js
 
-assets/js/jquery.storage.js
-assets/js/jquery.audio.api.js
-assets/js/jquery.audio.js
-assets/js/jquery.sound.js
-assets/js/jquery.media.js
+./assets/js/libs/jquery.mCustomScrollbar.min.js
 
-assets/js/main.js
-
-assets/js/jquery.mCustomScrollbar.min.js
-
-assets/img/mCSB_buttons.png
-assets/img/cursors/default.cur
-assets/img/launcher.logo.png
-assets/img/launcher.spin.png
+./assets/img/mCSB_buttons.png
+./assets/img/cursors/default.cur
+./assets/img/launcher.logo.png
+./assets/img/launcher.spin.png
 
 NETWORK:
 *
-gate.json
+./gate.json
+./boot.js
+./application.js

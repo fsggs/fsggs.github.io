@@ -132,7 +132,7 @@ function launcherSpin(prc, animate, callback) {
 		}, 500, callback);
 	} else {
 		$spin.width(prc + '%');
-		if(callback != 'undefined') callback();
+		if (callback != 'undefined') callback();
 	}
 }
 
@@ -151,4 +151,3 @@ function ProgressHide() {
 	});
 }
 //-------------------------------------------------------------------------//
-
