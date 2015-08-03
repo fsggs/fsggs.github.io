@@ -154,6 +154,7 @@ if (!window.applicationCache) {
 				location.reload();
 			}, false);
 			launcher.cache.addEventListener('noupdate', function () {
+				launcher.ProgressChange(100);
 				launcher.ProgressHide();
 			}, false)
 		} else if (launcher.cache && !launcher.cacheEnabled) {

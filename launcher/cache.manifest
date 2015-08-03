@@ -1,10 +1,14 @@
 CACHE MANIFEST
-# Версия 1.0.0.0005
+# Версия 1.0.0.0007
 
 ../favicon.ico
+../index.html
 
 CACHE:
 ../assets/css/libs/jquery.mCustomScrollbar.css
+
+../assets/js/boot.js
+../assets/js/application.js
 
 ../assets/css/main.css
 ../assets/css/client.css
@@ -23,6 +27,3 @@ CACHE:
 NETWORK:
 *
 ../api/gate.json
-../index.html
-../assets/js/boot.js
-../assets/js/application.js
