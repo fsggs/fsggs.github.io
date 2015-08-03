@@ -45,7 +45,7 @@ section.launcher > .splash_screen > .loader {
 	top: 0; bottom: 0; left: 0; right: 0;
 	width: 270px;
 	height: 238px;
-	background: url("../img/launcher.logo.png");
+	background: url("../img/launcher/launcher.logo.png");
 }
 
 section.launcher > .splash_screen > .loader > .loader-status {
@@ -58,7 +58,7 @@ section.launcher > .splash_screen > .loader > .loader-status {
 }
 
 section.launcher > .splash_screen > .loader > .loader-status > .spin {
-	background: #ccc url('../img/launcher.spin.png') 0 0 no-repeat;
+	background: #ccc url('../img/launcher/launcher.spin.png') 0 0 no-repeat;
 	width: 0;
 	height: 3px;
 }

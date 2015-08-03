@@ -1,0 +1,28 @@
+CACHE MANIFEST
+# Версия 1.0.0.0005
+
+../favicon.ico
+
+CACHE:
+../assets/css/libs/jquery.mCustomScrollbar.css
+
+../assets/css/main.css
+../assets/css/client.css
+
+../assets/js/libs/require.js/require-2.1.20.min.js
+../assets/js/libs/jquery/jquery-2.1.4.min.js
+../assets/js/libs/jquery.draggable.js
+
+../assets/js/libs/jquery.mCustomScrollbar.min.js
+
+../assets/img/mCSB_buttons.png
+../assets/img/cursors/default.cur
+../assets/img/launcher/launcher.logo.png
+../assets/img/launcher/launcher.spin.png
+
+NETWORK:
+*
+../api/gate.json
+../index.html
+../assets/js/boot.js
+../assets/js/application.js
