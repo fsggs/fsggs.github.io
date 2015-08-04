@@ -1,0 +1,6 @@
+{
+  "name": "Server Api Emulation",
+  "version": "1.0.0.abc",
+  "status": "online",
+  "emulationAPI": true
+}

@@ -1,9 +1,9 @@
 /**
- * Launcher
+ * BootLauncher
  *
  * @constructor __construct
  */
-function Launcher() {
+function BootLauncher() {
 	this.cache = undefined;
 	this.cacheEnabled = true;
 
@@ -42,7 +42,7 @@ function Launcher() {
 		}, 1 / frame_rate);
 	};
 
-	this.onReady = function (callback) {
+	var onReady = function (callback) {
 		if (document.readyState != 'loading') {
 			callback();
 		} else {
@@ -103,7 +103,63 @@ function Launcher() {
 			}, 1000);
 		});
 	};
-//-------------------------------------------------------------------------//
+
+    this.CacheManager = function() {
+        var launcher = this;
+        onReady(function () {
+            // Проверяем подключение
+            if (navigator.onLine) {
+                var loader = document.querySelector('section.launcher > .splash_screen > .loader');
+                console.log('Connecting to update server establishment.');
+                loader.style.display = 'block';
+            }
+            else {
+                console.log('It is impossible to establish connection to the server.');
+                launcher.cacheEnabled = false;
+            }
+
+            // Чиним зависание загрузчика при проверке манифеста в самом начале загрузки
+            if (launcher.cacheEnabled && 2 === launcher.cache.status) {
+                setTimeout(function () {
+                    location.reload();
+                }, 1000);
+            }
+
+            if (launcher.cache && launcher.cacheEnabled) {
+                // Ресурсы уже кэшированнны.
+                launcher.cache.addEventListener('cached', function () {
+                    launcher.ProgressChange(100);
+                    launcher.ProgressHide();
+                }, false);
+                // Начало скачивания ресурсов. progress_max - количество ресурсов.
+                launcher.cache.addEventListener('downloading', function () {
+                    launcher.ProgressShow();
+                }, false);
+                // Процесс скачивания ресурсов. Индикатор прогресса изменяется
+                launcher.cache.addEventListener('progress', function (e) {
+                    launcher.ProgressChange(e);
+                }, false);
+                // Скачивание ресурсов завершено. Обновляем кэш. Перезагружаем страницу.
+                launcher.cache.addEventListener('updateready', function () {
+                    launcher.ProgressHide();
+                    window.applicationCache.swapCache();
+                    location.reload();
+                }, false);
+                launcher.cache.addEventListener('noupdate', function () {
+                    launcher.ProgressChange(100);
+                    launcher.ProgressHide();
+                }, false)
+            } else if (launcher.cache && !launcher.cacheEnabled) {
+                if (1 === launcher.cache.status || 3 < launcher.cache.status) {
+                    window.applicationCache.swapCache();
+                }
+                launcher.ProgressChange(100);
+                loader.style.display = 'none';
+            }
+
+        });
+    };
+    //-------------------------------------------------------------------------//
 	__construct(this);
 }
 
@@ -113,55 +169,6 @@ function Launcher() {
 if (!window.applicationCache) {
 	window.applicationCache = undefined;
 } else {
-	var launcher = new Launcher();
-
-	launcher.onReady(function () {
-		// Проверяем подключение
-		if (navigator.onLine) {
-			var loader = document.querySelector('section.launcher > .splash_screen > .loader');
-			console.log('Connecting to update server establishment.');
-			loader.style.display = 'block';
-		}
-		else {
-			console.log('It is impossible to establish connection to the server.');
-			launcher.cacheEnabled = false;
-		}
-
-		// Чиним зависание загрузчика при проверке манифеста в самом начале загрузки
-		if (launcher.cacheEnabled && 2 === launcher.cache.status) {
-			setTimeout(function () {
-				location.reload();
-			}, 1000);
-		}
-
-		if (launcher.cache && launcher.cacheEnabled) {
-			// Ресурсы уже кэшированнны.
-			launcher.cache.addEventListener('cached', function () {
-				launcher.ProgressHide();
-			}, false);
-			// Начало скачивания ресурсов. progress_max - количество ресурсов.
-			launcher.cache.addEventListener('downloading', function () {
-				launcher.ProgressShow();
-			}, false);
-			// Процесс скачивания ресурсов. Индикатор прогресса изменяется
-			launcher.cache.addEventListener('progress', function (e) {
-				launcher.ProgressChange(e);
-			}, false);
-			// Скачивание ресурсов завершено. Обновляем кэш. Перезагружаем страницу.
-			launcher.cache.addEventListener('updateready', function () {
-				launcher.ProgressHide();
-				window.applicationCache.swapCache();
-				location.reload();
-			}, false);
-			launcher.cache.addEventListener('noupdate', function () {
-				launcher.ProgressChange(100);
-				launcher.ProgressHide();
-			}, false)
-		} else if (launcher.cache && !launcher.cacheEnabled) {
-			if (1 === launcher.cache.status || 3 < launcher.cache.status) {
-				window.applicationCache.swapCache();
-			}
-			loader.style.display = 'none';
-		}
-	});
+	window.launcher = new BootLauncher();
+    window.launcher.CacheManager();
 }
