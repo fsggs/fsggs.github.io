@@ -1,12 +1,44 @@
-section.launcher {
+.panel label {
+    display: block;
+
+    margin: 5px 0 0 5px;
+    padding-left: 5px;
+}
+
+.panel label span {
+    color: #4A4A4A;
+    font-size: 8pt;
+}
+
+.panel label input[type=text] {
+    width: 250px;
+    height: 25px;
+    background: #eaeaea;
+    padding: 0 5px;
+    color: #4A4A4A;
+    font-size: 8pt;
+
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+}
+
+.panel label span.hint {
+    font-size: 7pt;
+}
+
+/*---------------------- section.Launcher.a ----------------------*/
+section#loader {
     height: 100%;
     width: 100%;
     min-height: 100%;
     min-width: 100%;
+
+    background: linear-gradient(to top, #72a2ae, #90c5d2);
 }
 
 /*---------------------- section.Launcher ----------------------*/
-section.launcher {
+section.loader {
     display: block;
     position: absolute;
     left: 0;
@@ -14,12 +46,12 @@ section.launcher {
     z-index: 9999;
 }
 
-section.launcher > .splash_screen {
+section#loader > .splash_screen {
     position: relative;
     height: 100%;
 }
 
-section.launcher > .splash_screen > .loader {
+section#loader > .splash_screen > .loader {
     margin: auto;
     position: absolute;
     top: 0;
@@ -31,7 +63,7 @@ section.launcher > .splash_screen > .loader {
     background: url("../img/launcher/launcher.logo.png");
 }
 
-section.launcher > .splash_screen > .loader > .loader-status {
+section#loader > .splash_screen > .loader > .loader-status {
     position: absolute;
     bottom: 5px;
     left: 4px;
@@ -40,14 +72,23 @@ section.launcher > .splash_screen > .loader > .loader-status {
     z-index: -1;
 }
 
-section.launcher > .splash_screen > .loader > .loader-status > .spin {
+section#loader > .splash_screen > .loader > .loader-status > .spin {
     background: #ccc url('../img/launcher/launcher.spin.png') 0 0 no-repeat;
     width: 0;
     height: 3px;
 }
 
+section#loader .status {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 240px;
+    font-size: 8pt;
+}
+
 /*---------------------- w Console ----------------------*/
-section.console {
+section#console {
     display: none;
     position: absolute;
     top: 5px;
@@ -67,14 +108,14 @@ section.console {
     -moz-user-select: none;
 }
 
-section.console > h3 {
+section#console > h3 {
     font-size: 10pt;
     padding: 2px 0 0 5px;
     color: #F2F2F2;
     font-weight: 100;
 }
 
-section.console > #console-panel {
+section#console > #console-panel {
     position: relative;
     float: left;
     width: 446px;
@@ -89,7 +130,7 @@ section.console > #console-panel {
     -moz-user-select: text;
 }
 
-section.console > #console-input {
+section#console > #console-input {
     position: relative;
     float: left;
     width: 446px;
@@ -101,7 +142,7 @@ section.console > #console-input {
     border-bottom-left-radius: 4px;
 }
 
-section.console > #console-input > input {
+section#console > #console-input > input {
     width: 430px;
     height: 25px;
     background: #ccc;
@@ -112,7 +153,7 @@ section.console > #console-input > input {
     border-bottom-left-radius: 4px;
 }
 
-section.console > #console-panel p.message {
+section#console > #console-panel p.message {
     padding: 1px 4px;
     color: #4A4A4A;
     font-size: 8pt;
@@ -133,7 +174,7 @@ section#master-server {
 
     width: 350px;
     height: 128px;
-    z-index: 10000;
+    z-index: 499;
     background: #aaa;
     border-radius: 4px;
 
@@ -164,39 +205,17 @@ section#master-server > .panel {
     border-radius: 2px;
 }
 
-.panel label {
-    display: block;
-
-    margin: 5px 0 0 5px;
-    padding-left: 5px;
+section#master-server .panel .button-box {
+    position: absolute;
+    left: 230px;
+    top: 48px;
 }
 
-.panel span.status {
-    margin: 5px 0 0 5px;
-    padding-left: 10px;
+section#master-server .panel span.status {
+    position: absolute;
+    left: 5px;
+    bottom: 3px;
 
     color: #555;
     font-size: 8pt;
-}
-
-.panel label span {
-    color: #4A4A4A;
-    font-size: 8pt;
-}
-
-.panel label input[type=text] {
-    width: 250px;
-    height: 25px;
-    background: #eaeaea;
-    padding: 0 5px;
-    color: #4A4A4A;
-    font-size: 8pt;
-
-    user-select: text;
-    -webkit-user-select: text;
-    -moz-user-select: text;
-}
-
-.panel label span.hint {
-    font-size: 7pt;
 }

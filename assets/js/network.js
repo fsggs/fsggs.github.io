@@ -5,14 +5,16 @@
  * @constructor
  */
 function Network($) {
+    this.gateUrl = undefined;
+
     this.loadHtml = function (url, callback) {
         $.ajax({
             url: url,
             dataType: 'html',
-            success: function(data){
+            success: function (data) {
                 callback(data);
             },
-            error: function() {
+            error: function () {
                 callback(undefined);
             }
         });
@@ -23,10 +25,10 @@ function Network($) {
             url: url,
             data: data,
             dataType: 'json',
-            success: function(data){
+            success: function (data) {
                 callback(data);
             },
-            error: function() {
+            error: function () {
                 callback(undefined);
             }
         });
@@ -39,5 +41,7 @@ function Network($) {
 define([
     'jquery'
 ], function ($) {
-    window.application.network = new Network($)
+    if (!window.application.network) {
+        window.application.network = new Network($)
+    }
 });

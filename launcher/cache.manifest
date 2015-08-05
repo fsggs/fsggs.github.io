@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Версия 1.0.0.0008
+# Версия 1.0.0.0009
 
 ../favicon.ico
 ../index.html
@@ -9,7 +9,7 @@ CACHE:
 
 ../assets/js/boot.js
 
-#../assets/css/main.css
+../assets/css/main.css
 ../assets/css/client.css
 
 ../assets/js/libs/require.js/require-2.1.20.min.js

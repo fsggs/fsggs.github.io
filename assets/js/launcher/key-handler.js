@@ -1,9 +1,11 @@
-define(['jquery'], function ($) {
+define(['jquery', 'network'], function ($) {
+    var network = window.application.network;
+
     /**
      * Перехватчик нажатий на клавиши
      */
     $(document).keydown(function (event) {
-        //console.log(event.keyCode);
+        console.log('::' + event.keyCode);
         switch (event.keyCode) {
             case 192: //~tilda~
                 if (!$('input:focus').length
@@ -18,6 +20,14 @@ define(['jquery'], function ($) {
                     } else {
                         $('section.console').hide();
                     }
+                }
+                break;
+            case 113: //F2
+                if (MasterServerWindow && !$('#master-server').is(':visible')) {
+                    event.preventDefault();
+                    var _w = new MasterServerWindow($, network);
+                    _w.render();
+                    _w = undefined;
                 }
                 break;
             case 116: //F5
