@@ -13,7 +13,7 @@
 	$.fn.draggable = function (opt) {
 		opt = $.extend({
 			parent: true,
-			handle: "",
+			handle: ".drag-handle",
 			draggableClass: "dragged",
 			activeHandleClass: "active-handle"
 		}, opt);
@@ -22,7 +22,9 @@
 		var $elements = (opt.handle === "") ? this : this.find(opt.handle);
 
 		$elements.on("mousedown", function (e) {
-			if (opt.handle === "") {
+            e.preventDefault(); // disable selection
+            e.stopPropagation();
+            if (opt.handle === "") {
 				$selected = $(this);
 				$selected.addClass(opt.draggableClass);
 			} else {
@@ -67,8 +69,6 @@
 					$selected = null;
 				}
 			});
-			e.preventDefault(); // disable selection
-			e.stopPropagation();
 		}).on("mouseup", function () {
 			if (opt.handle === "") {
 				$selected.removeClass(opt.draggableClass);

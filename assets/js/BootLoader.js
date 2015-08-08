@@ -1,9 +1,9 @@
 /**
- * BootLauncher
+ * BootLoader
  *
  * @constructor __construct
  */
-function BootLauncher() {
+function BootLoader() {
     this.cache = undefined;
     this.cacheEnabled = true;
 
@@ -13,22 +13,7 @@ function BootLauncher() {
         }
     };
 
-    var fadeIn = function (element) {
-        element.style.opacity = 0;
-
-        var last = +new Date();
-        var tick = function () {
-            element.style.opacity = +element.style.opacity + (new Date() - last) / 400;
-            last = +new Date();
-
-            if (+element.style.opacity < 1) {
-                (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16)
-            }
-        };
-        tick();
-    };
-
-    var launcherSpinAnimate = function (object, property, start_value, end_value, time, callback) {
+    var loaderSpinAnimate = function (object, property, start_value, end_value, time, callback) {
         var frame_rate = 0.06; // 60 FPS
         var frame = 0;
         var delta = (end_value - start_value) / time / frame_rate;
@@ -44,15 +29,16 @@ function BootLauncher() {
     };
 
     //------------------- Функции клиента ----------------//
+    // TODO:: This is hack!
     this.loadMainClientScreen = function () {
         var client = document.querySelector('section.client');
         var request = new XMLHttpRequest();
-        request.open('GET', 'client/client.html', true);
+        request.open('GET', 'assets/layouts/client/client.html', true);
 
         request.onload = function () {
             if (request.status >= 200 && request.status < 400) {
                 client.innerHTML = request.responseText;
-                fadeIn(client);
+                client.style.display = 'block';
             }
         };
 
@@ -67,13 +53,13 @@ function BootLauncher() {
     //------------------- Функции клиента ----------------//
 
     //------------------- Функции управлением экраном загрузки ----------------//
-    var launcherSpin = function (prc, animate, callback) {
+    var loaderSpin = function (prc, animate, callback) {
         var spin = document.querySelector('section#loader > .splash_screen > .loader > .loader-status > .spin');
         if (animate) {
             var from = spin.style.width;
             from = (from == '') ? 0 : (parseFloat(from) / 100);
             if (from != prc) {
-                launcherSpinAnimate(spin, 'width', from, prc, 500, callback);
+                loaderSpinAnimate(spin, 'width', from, prc, 500, callback);
             }
         } else {
             spin.style.width = prc + '%';
@@ -87,89 +73,89 @@ function BootLauncher() {
     };
 
     this.ProgressShow = function () {
-        launcherSpin(0, true);
+        loaderSpin(0, true);
     };
 
     this.ProgressChange = function (e) {
         if (Object === typeof e) {
             setStatus('Updating (' + e.loaded + '/' + e.total + ')...');
-            launcherSpin(Math.round(e.loaded / e.total * 100), true);
+            loaderSpin(Math.round(e.loaded / e.total * 100), true);
         } else {
             setStatus('Update resources done. Loading...');
-            launcherSpin(e, true);
+            loaderSpin(e, true);
         }
 
     };
 
     this.ProgressHide = function () {
-        var Launcher = this;
-        launcherSpin(100, true, function () {
-            var launcher = document.querySelector('section#loader');
+        var loader = this;
+        loaderSpin(100, true, function () {
+            var $loader = document.querySelector('section#loader');
             setTimeout(function () {
-                launcher.style.display = 'none';
-                Launcher.loadMainClientScreen();
+                $loader.style.display = 'none';
+                loader.loadMainClientScreen();
             }, 1200);
         });
     };
 
     this.CacheManager = function () {
-        var launcher = this;
+        var loader = this;
         // Проверяем подключение
         if (navigator.onLine) {
-            var loader = document.querySelector('section#loader > .splash_screen > .loader');
+            var $loader = document.querySelector('section#loader > .splash_screen > .loader');
             console.log('Connecting to update server establishment.');
-            loader.style.display = 'block';
+            $loader.style.display = 'block';
             setStatus('Client is online.');
         }
         else {
             console.log('It is impossible to establish connection to the server.');
-            launcher.cacheEnabled = false;
+            loader.cacheEnabled = false;
             setStatus('Client is offline.');
         }
 
         // Чиним зависание загрузчика при проверке манифеста в самом начале загрузки
-        if (launcher.cacheEnabled && 2 === launcher.cache.status) {
+        if (loader.cacheEnabled && 2 === loader.cache.status) {
             setStatus('Client reload resources...');
             setTimeout(function () {
                 location.reload();
             }, 1000);
         }
 
-        if (launcher.cache && launcher.cacheEnabled) {
+        if (loader.cache && loader.cacheEnabled) {
             // Ресурсы уже кэшированнны.
-            launcher.cache.addEventListener('cached', function () {
+            loader.cache.addEventListener('cached', function () {
                 setStatus('Loading done.');
-                launcher.ProgressChange(100);
-                launcher.ProgressHide();
+                loader.ProgressChange(100);
+                loader.ProgressHide();
             }, false);
             // Начало скачивания ресурсов. progress_max - количество ресурсов.
-            launcher.cache.addEventListener('downloading', function () {
+            loader.cache.addEventListener('downloading', function () {
                 setStatus('Start updating.');
-                launcher.ProgressShow();
+                loader.ProgressShow();
             }, false);
             // Процесс скачивания ресурсов. Индикатор прогресса изменяется
-            launcher.cache.addEventListener('progress', function (e) {
-                launcher.ProgressChange(e);
+            loader.cache.addEventListener('progress', function (e) {
+                loader.ProgressChange(e);
             }, false);
             // Скачивание ресурсов завершено. Обновляем кэш. Перезагружаем страницу.
-            launcher.cache.addEventListener('updateready', function () {
+            loader.cache.addEventListener('updateready', function () {
                 setStatus('Updating done. Reloading...');
-                launcher.ProgressHide();
+                loader.ProgressHide();
                 window.applicationCache.swapCache();
                 location.reload();
             }, false);
-            launcher.cache.addEventListener('noupdate', function () {
+            loader.cache.addEventListener('noupdate', function () {
                 setStatus('No update. Loading...');
-                launcher.ProgressChange(100);
-                launcher.ProgressHide();
+                loader.ProgressChange(100);
+                loader.ProgressHide();
             }, false)
-        } else if (launcher.cache && !launcher.cacheEnabled) {
+        } else if (loader.cache && !loader.cacheEnabled) {
             setStatus('Loading done.');
-            if (1 == launcher.cache.status || 3 < launcher.cache.status) {
+            if (1 == loader.cache.status || 3 < loader.cache.status) {
                 window.applicationCache.swapCache();
             }
-            launcher.ProgressChange(100);
-            launcher.ProgressHide();
+            loader.ProgressChange(100);
+            loader.ProgressHide();
         }
     };
     //-------------------------------------------------------------------------//
@@ -181,7 +167,37 @@ function BootLauncher() {
  */
 if (!window.applicationCache) {
     window.applicationCache = undefined;
-} else if (!window.launcher) {
-    window.launcher = new BootLauncher();
-    window.launcher.CacheManager();
 }
+
+window.loader = new BootLoader();
+window.loader.CacheManager();
+
+Array.prototype.contains = function (object) {
+    var i = this.length;
+    while (i--) {
+        if (this[i] === object) {
+            return true;
+        }
+    }
+    return false;
+};
+
+
+Array.prototype.add = function (key, value) {
+    if (this.contains(key))
+        this[key] = value;
+    else {
+        this.push(key);
+        this[key] = value;
+    }
+};
+
+
+Array.prototype.remove = function (key) {
+    for (var i = 0; i < this.length; ++i) {
+        if (this[i] == key) {
+            this.splice(i, 1);
+            return;
+        }
+    }
+};

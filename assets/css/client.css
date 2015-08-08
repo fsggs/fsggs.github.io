@@ -1,0 +1,133 @@
+section#client #client-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto 0;
+    width: 150px;
+    height: 164px;
+}
+
+section#client #mod-menu {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    margin: auto 0;
+    width: 150px;
+    height: 38px;
+}
+
+section#client #service-menu {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    margin: auto 0;
+    width: 150px;
+    height: 80px;
+}
+
+section#client #client-menu > .client-menu-button,
+section#client #mod-menu > .client-menu-button,
+section#client #service-menu > .client-menu-button {
+    margin-bottom: 10px;
+}
+
+section#client #client-menu > .client-menu-button:last-child,
+section#client #mod-menu > .client-menu-button:last-child,
+section#client #service-menu > .client-menu-button:last-child {
+    margin-bottom: 0;
+}
+
+section#client .client-menu-button {
+    display: inline-block;
+
+    min-width: 120px;
+    text-align: center;
+
+    color: #6c6c6c;
+    background-color: #ECECEC;
+    border: 1px solid #AFAFAF;
+
+    padding: 6px 8px 6px 7px;
+    margin: 1px 1px 1px 0;
+
+    border-radius: 2px;
+
+    cursor: pointer;
+
+    -webkit-box-shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.25);
+    -moz-box-shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.25);
+    box-shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.25);
+}
+
+section#client .client-menu-button:not(.disabled):hover,
+section#client .client-menu-button:not(.disabled).hover {
+    -webkit-box-shadow: 0 -1px 1px 0 rgba(50, 50, 50, 0.25);
+    -moz-box-shadow: 0 -1px 1px 0 rgba(50, 50, 50, 0.25);
+    box-shadow: 0 -1px 1px 0 rgba(50, 50, 50, 0.25);
+}
+
+section#client .client-menu-button:not(.disabled):active,
+section#client .client-menu-button:not(.disabled).active {
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+    -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+
+section#client .client-menu-button.disabled {
+    opacity: .65;
+}
+
+/*---------------------- w Error ----------------------*/
+section#error-window {
+    display: none;
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 350px;
+    height: 80px;
+    z-index: 499;
+    background: #aaa;
+    border-radius: 4px;
+
+    -webkit-box-shadow: 1px 2px 5px 0 rgba(50, 50, 50, 0.5);
+    -moz-box-shadow: 1px 2px 5px 0 rgba(50, 50, 50, 0.5);
+    box-shadow: 1px 2px 5px 0 rgba(50, 50, 50, 0.5);
+
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+section#error-window > h3 {
+    font-size: 10pt;
+    padding: 2px 0 0 5px;
+    color: #F2F2F2;
+    font-weight: 100;
+}
+
+section#error-window > .panel {
+    position: relative;
+    float: left;
+    width: 346px;
+    height: 57px;
+    margin: 1px 1px 1px 1px;
+    background: #ccc;
+    border: 1px solid #A19E9E;
+    border-radius: 2px;
+}
+
+section#error-window .message {
+    font-size: 8pt;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    margin: 22px 0;
+
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+}

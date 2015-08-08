@@ -1,6 +1,8 @@
-define(['jquery', 'network'], function ($) {
-    var network = window.application.network;
-
+define([
+    'jquery',
+    'common/WindowManager',
+    'launcher/MasterServerWindow'
+], function ($, WindowManager) {
     /**
      * Перехватчик нажатий на клавиши
      */
@@ -23,9 +25,9 @@ define(['jquery', 'network'], function ($) {
                 }
                 break;
             case 113: //F2
-                if (MasterServerWindow && !$('#master-server').is(':visible')) {
+                if (!$('#master-server').is(':visible')) {
                     event.preventDefault();
-                    var _w = new MasterServerWindow($, network);
+                    var _w = new WindowManager($, 'launcher/MasterServerWindow');
                     _w.render();
                     _w = undefined;
                 }

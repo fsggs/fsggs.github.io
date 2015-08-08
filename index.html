@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="launcher/cache.manifest" lang="en_US">
+<html manifest="api/cache.manifest" lang="en_US">
 <!--html lang="en_US"-->
 <head>
     <meta charset="utf-8">
@@ -30,7 +30,7 @@
 
 <section id="console" class="console window draggable" style="display: none;">
     <div class="close">×</div>
-    <h3 class="active-handle"># Debug console</h3>
+    <h3 class="drag-handle"># Debug console</h3>
 
     <div id="console-panel" class="scrollbar-box">
         <p class="message">[Launcher]: Launcher started...</p>
@@ -54,8 +54,10 @@
 <section id="client" class="client" style="display: none;"></section>
 <section id="game" class="game" style="display: none;"></section>
 
-<script src="assets/js/boot.js"></script>
-<script src="assets/js/libs/require.js/require-2.1.20.min.js" data-main="assets/js/application"></script>
+<section id="editor" class="editor" style="display: none;"></section>
+<section id="service" class="service" style="display: none;"></section>
 
+<script src="assets/js/BootLoader.js"></script>
+<script src="assets/js/libs/require.js/require-2.1.20.min.js" data-main="assets/js/application"></script>
 </body>
 </html>
