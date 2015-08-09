@@ -2,7 +2,8 @@ define([
     'jquery',
     'jquery.draggable',
     'jquery.scrollbar',
-    'launcher/MasterServerWindow'
+    'launcher/MasterServerWindow',
+    'common/TestWindow'
 ], function ($) {
     function ClientScreen() {
 

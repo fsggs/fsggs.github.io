@@ -28,7 +28,6 @@ define([
         this.render = function (callback) {
             _w.render(function () {
                 $('.draggable').draggable();
-                window.application.stackWindows.add(_w.id, _w.data);
                 if (callback) callback();
             });
         };
@@ -37,7 +36,6 @@ define([
     }
 
     $(document).on('click', '.window > .close:not(".disabled")', function () {
-        window.application.stackWindows.remove($(this).id);
         $(this).parent().remove();
     });
 
