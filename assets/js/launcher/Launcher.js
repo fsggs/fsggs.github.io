@@ -1,13 +1,9 @@
 define([
     'jquery',
     'common/WindowManager',
-    'jquery.draggable',
     'jquery.scrollbar'
 ], function ($, WindowManager) {
 	$(document).ready(function () {
-        /** Drag окошек */
-		$('.draggable').draggable();
-
         /** Скроллбар */
         $('.scrollbar-box').mCustomScrollbar({
             axis: 'y',
@@ -27,7 +23,7 @@ define([
                     window.location = method[1];
                     break;
                 case '_w':
-                    var _w = new WindowManager($, method[1]);
+                    var _w = new WindowManager(method[1]);
                     _w.render();
                     _w = undefined;
                     break;
@@ -35,11 +31,11 @@ define([
                     if ("function" === typeof method[1]) {
                         method[1]();
                     } else {
-                        console.log('Call undefined function: ' + method[1] + '()');
+                        console.warn('Call undefined function: ' + method[1] + '()');
                     }
                     break;
                 default:
-                    console.log('Call unregistered link method: ' + attr);
+                    console.warn('Call unregistered link method: ' + attr);
             }
         }
     });

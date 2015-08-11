@@ -5,23 +5,28 @@ define([
 ], function ($, ErrorWindow) {
     "use strict";
 
-    function WindowManager($, windowClass, data) {
+    function WindowManager(windowClass, data) {
         var _w = undefined;
         var WindowManager = this;
+
+        function showErrorWindow(className) {
+            console.warn('Not found window: ~_w:' + className);
+            _w = new ErrorWindow();
+            _w.setContent('Not found window: ~_w:' + className);
+            _w.toCenter();
+        }
 
         var __construct = function () {
             try {
                 var _wClass = require(windowClass);
 
                 if (_wClass && 'function' == typeof _wClass) {
-                    _w = new _wClass($, data);
+                    _w = new _wClass(data);
                 } else {
-                    _w = new ErrorWindow($);
-                    _w.setMessage('Not found window: ~_w:' + _wClass);
+                    showErrorWindow(_wClass);
                 }
             } catch (e) {
-                _w = new ErrorWindow($);
-                _w.setMessage('Not found window: ~_w:' + windowClass);
+                showErrorWindow(windowClass);
             }
         };
 
@@ -35,7 +40,13 @@ define([
         __construct(WindowManager);
     }
 
-    $(document).on('click', '.window > .close:not(".disabled")', function () {
+    $(document).on('mousedown', '.window', function () {
+        if (!$(this).is(':last-child')) {
+            $(this).detach().appendTo('body');
+        }
+    });
+
+    $(document).on('click', '.window .close:not(".disabled")', function () {
         $(this).parent().remove();
     });
 

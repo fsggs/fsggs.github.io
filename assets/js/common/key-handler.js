@@ -13,6 +13,13 @@ define([
                 if (!$('input:focus').length
                     || $('#console-input > input:focus').length) {
                     event.preventDefault();
+
+                    if (!$('section.console').is(':visible')) {
+                        event.preventDefault();
+                        var ConsoleWindow = new WindowManager('client/ConsoleWindow');
+                        ConsoleWindow.render();
+                    }
+
                     if ($('section.console').is(':hidden')) {
                         $('section.console').show();
                         $('#console-input').find('> input').focus();
@@ -27,9 +34,8 @@ define([
             case 113: //F2
                 if (!$('#master-server').is(':visible')) {
                     event.preventDefault();
-                    var _w = new WindowManager($, 'launcher/MasterServerWindow');
-                    _w.render();
-                    _w = undefined;
+                    var MasterServerWindow = new WindowManager('launcher/MasterServerWindow');
+                    MasterServerWindow.render();
                 }
                 break;
             case 116: //F5

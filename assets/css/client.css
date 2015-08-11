@@ -78,56 +78,51 @@ section#client .client-menu-button.disabled {
     opacity: .65;
 }
 
-/*---------------------- w Error ----------------------*/
-section#error-window {
-    display: none;
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 350px;
-    height: 80px;
-    z-index: 499;
-    background: #aaa;
-    border-radius: 4px;
-
-    -webkit-box-shadow: 1px 2px 5px 0 rgba(50, 50, 50, 0.5);
-    -moz-box-shadow: 1px 2px 5px 0 rgba(50, 50, 50, 0.5);
-    box-shadow: 1px 2px 5px 0 rgba(50, 50, 50, 0.5);
-
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-}
-
-section#error-window > h3 {
-    font-size: 10pt;
-    padding: 2px 0 0 5px;
-    color: #F2F2F2;
-    font-weight: 100;
-}
-
-section#error-window > .panel {
+/*---------------------- w Console ----------------------*/
+section#console > #console-panel {
     position: relative;
     float: left;
-    width: 346px;
-    height: 57px;
-    margin: 1px 1px 1px 1px;
+    width: 450px;
+    height: 322px;
+
     background: #ccc;
     border: 1px solid #A19E9E;
     border-radius: 2px;
+
+    user-select: all;
+    -webkit-user-select: auto;
+    -moz-user-select: all;
 }
 
-section#error-window .message {
-    font-size: 8pt;
-    text-align: center;
-    width: 100%;
+section#console > #console-input {
     position: relative;
-    display: inline-block;
-    margin: 22px 0;
+    float: left;
+    width: 450px;
+    height: 26px;
+    background: #ccc;
+    border: 1px solid #A19E9E;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+section#console > #console-input > input {
+    width: 430px;
+    height: 25px;
+    background: #ccc;
+    padding: 0 5px;
+    color: #4A4A4A;
+    font-size: 8pt;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
 
     user-select: text;
     -webkit-user-select: text;
     -moz-user-select: text;
+}
+
+section#console > #console-panel p.message {
+    padding: 1px 4px;
+    color: #4A4A4A;
+    font-size: 8pt;
+    word-break: break-all;
 }

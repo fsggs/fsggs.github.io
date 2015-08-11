@@ -31,7 +31,56 @@ html, body {
     -moz-user-select: none;
 }
 
-.window.draggable > h3 {
+.window {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 400;
+
+    min-width: 250px;
+    min-height: 50px;
+
+    background: #aaa;
+    font-family: 'Open Sans';
+    font-size: 8pt;
+
+    border-radius: 4px;
+    padding: 20px 3px 4px 1px;
+
+    -webkit-box-shadow: 1px 2px 5px 0 rgba(50, 50, 50, 0.5);
+    -moz-box-shadow: 1px 2px 5px 0 rgba(50, 50, 50, 0.5);
+    box-shadow: 1px 2px 5px 0 rgba(50, 50, 50, 0.5);
+
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.window .title {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 20px;
+
+    font-size: 10pt;
+    font-weight: 100;
+    color: #F2F2F2;
+
+    padding: 2px 0 0 5px;
+}
+
+.window .panel {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #ccc;
+    border: 1px solid #A19E9E;
+    border-radius: 2px;
+}
+
+.window.draggable > .drag-handle {
     cursor: move !important;
 }
 
@@ -166,4 +215,17 @@ html, body {
 
 .window .button.disabled {
     opacity: .65;
+}
+
+/*---------------------- w Error ----------------------*/
+section.window.error .message {
+    font-size: 8pt;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    line-height: 80px;
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
 }

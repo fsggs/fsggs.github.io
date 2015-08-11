@@ -8,7 +8,7 @@ define([
 ], function ($, AbstractWindow) {
     "use strict";
 
-    function MasterServerWindow($) {
+    function MasterServerWindow() {
         var network = window.application.network;
         var _w = this;
         this.gateAPI = 'getVersion.json';
@@ -72,7 +72,7 @@ define([
 
 
     var network = window.application.network;
-    var _w = new MasterServerWindow($);
+    var _w = new MasterServerWindow();
 
     $(document).ready(function () {
         if (!$.localStorage('master-server-url')) {

@@ -5,6 +5,7 @@ requirejs.config({
         'jquery.draggable': 'libs/jquery.draggable',
         'jquery.scrollbar': 'libs/jquery.mCustomScrollbar.min',
         'jquery.storage': 'libs/jquery.storage',
+        'FPSMeter': 'libs/fpsmeter/fpsmeter-0.3.1',
         'underscore': 'libs/underscore.js/underscore-1.8.3.min'
     },
     shim: {
@@ -25,7 +26,6 @@ define('Application', [
      */
     function Application() {
         this.network = undefined;
-        this.stackWindows = [];
     }
 
     if (!window.application) {
