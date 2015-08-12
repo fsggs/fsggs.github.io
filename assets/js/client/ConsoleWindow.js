@@ -6,6 +6,8 @@ define([
 ], function ($, AbstractWindow) {
     "use strict";
 
+    var lc = application.console;
+
     function ConsoleWindow() {
         this.data = {
             id: 'console',
@@ -18,10 +20,16 @@ define([
             pos_y: 5,
             onOpen: function () {
                 $('#console-input').find('> input').focus();
+
+                if ('' == $('#console-panel').html()) {
+                    loadMessages();
+                }
+
                 $('#console-panel').mCustomScrollbar({
                     axis: 'y',
                     autoHideScrollbar: true
                 });
+
                 if ($('#console-panel').hasClass('mCustomScrollbar')) {
                     scrollConsoleToLast();
                 }
@@ -39,10 +47,25 @@ define([
             }
         };
 
+        var loadMessages = function () {
+            var messages = '';
+            $.each(lc.getAllMessages(), function(index, message){
+                messages += "<p class=\"message\">" + message + "</p> \r\n";
+            });
+
+            $('#console-panel').append(messages);
+        };
+
         var scrollConsoleToLast = function () {
             $("#console-panel").mCustomScrollbar('scrollTo', 'last', {
                 scrollInertia: 0
             });
+        };
+
+        var sendMessageToConsole = function (message) {
+            message = lc.addMessage(message);
+            $('#console-panel .mCSB_container')
+                .append('<p class="message">' + message + '</p>');
         };
 
         var keySendMessageToConsole = function (event) {
@@ -51,8 +74,7 @@ define([
                 var message = $('#console-input > input').val();
                 if (message.trim() != '') {
                     $('#console-input > input').val('');
-                    $('#console-panel .mCSB_container')
-                        .append('<p class="message">[Console]: ' + message + '</p>');
+                    sendMessageToConsole(message);
                     $("#console-panel").mCustomScrollbar('scrollTo', 'last');
                 }
             }

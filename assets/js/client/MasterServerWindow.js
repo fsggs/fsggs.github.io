@@ -11,7 +11,7 @@ define([
     function MasterServerWindow() {
         this.data = {
             id: 'master-server',
-            template: 'assets/layouts/launcher/w_master_server.html',
+            template: 'assets/layouts/client/w_master_server.html',
             title: '# Master Server Config',
             content: '',
             classes: ['master-server'],

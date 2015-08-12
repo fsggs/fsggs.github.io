@@ -119,12 +119,12 @@ function BootLoader() {
         // Проверяем подключение
         if (navigator.onLine) {
             var $loader = document.querySelector('section#loader > .splash_screen > .loader');
-            console.log('Connecting to update server establishment.');
+            console.info('Connecting to update server establishment.');
             $loader.style.display = 'block';
             setStatus('Client is online.');
         }
         else {
-            console.log('It is impossible to establish connection to the server.');
+            console.warn('It is impossible to establish connection to the server.');
             loader.cacheEnabled = false;
             setStatus('Client is offline.');
         }
@@ -178,7 +178,7 @@ function BootLoader() {
     __construct(this);
 }
 
-console.log(navigator.version);
+console.info('You using ' + navigator.version[0] + '(' + navigator.version[1] + ')');
 
 if (
     (navigator.version[0] == "Chrome" && navigator.version[1] >= 40) ||
@@ -194,33 +194,3 @@ if (
     document.getElementById('loader').style.display = 'none';
     document.getElementById('blocker').style.display = 'block';
 }
-
-Array.prototype.contains = function (object) {
-    var i = this.length;
-    while (i--) {
-        if (this[i] === object) {
-            return true;
-        }
-    }
-    return false;
-};
-
-
-Array.prototype.add = function (key, value) {
-    if (this.contains(key))
-        this[key] = value;
-    else {
-        this.push(key);
-        this[key] = value;
-    }
-};
-
-
-Array.prototype.remove = function (key) {
-    for (var i = 0; i < this.length; ++i) {
-        if (this[i] == key) {
-            this.splice(i, 1);
-            return;
-        }
-    }
-};

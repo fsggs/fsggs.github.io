@@ -5,7 +5,7 @@ define([
     'jquery.storage',
 
     'FPSMeter',
-    'launcher/MasterServerWindow',
+    'client/MasterServerWindow',
     'client/ConsoleWindow',
     'common/TestWindow'
 ], function ($, WindowManager) {
@@ -23,7 +23,7 @@ define([
 
         /** Check Master Server **/
         this.checkMasterServer = function () {
-            var MasterServerWindow = new WindowManager('launcher/MasterServerWindow');
+            var MasterServerWindow = new WindowManager('client/MasterServerWindow');
             if (!$.localStorage('master-server-url')) {
                 MasterServerWindow.render(null, true);
             } else {
@@ -54,7 +54,7 @@ define([
         var keyShowMasterWindow = function (event) {
             if (!$('#master-server').is(':visible')) {
                 event.preventDefault();
-                var MasterServerWindow = new WindowManager('launcher/MasterServerWindow');
+                var MasterServerWindow = new WindowManager('client/MasterServerWindow');
                 MasterServerWindow.render(null, true);
             }
         };

@@ -62,8 +62,6 @@ define([
     });
 
     $(document).on('mousedown, click', '.window .close:not(".disabled")', function () {
-        console.log('BU');
-
         var id = $(this).parent().attr('id');
         var _w = loadWindow(id);
 
