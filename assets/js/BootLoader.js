@@ -3,6 +3,22 @@
  *
  * @constructor __construct
  */
+navigator.version = (function () {
+    var ua = navigator.userAgent, tem,
+        M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    if (/trident/i.test(M[1])) {
+        tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+        return 'IE ' + (tem[1] || '');
+    }
+    if (M[1] === 'Chrome') {
+        tem = ua.match(/\bOPR\/(\d+)/);
+        if (tem != null) return 'Opera ' + tem[1];
+    }
+    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+    if ((tem = ua.match(/version\/(\d+)/i)) != null) M.splice(1, 1, tem[1]);
+    return M;
+})();
+
 function BootLoader() {
     this.cache = undefined;
     this.cacheEnabled = true;
@@ -162,15 +178,22 @@ function BootLoader() {
     __construct(this);
 }
 
-/**
- * Application Cache Loader
- */
-if (!window.applicationCache) {
-    window.applicationCache = undefined;
-}
+console.log(navigator.version);
 
-window.loader = new BootLoader();
-window.loader.CacheManager();
+if (
+    (navigator.version[0] == "Chrome" && navigator.version[1] >= 40) ||
+    (navigator.version[0] == "Firefox" && navigator.version[1] >= 35)
+) {
+    if (undefined == window.applicationCache) {
+        window.applicationCache = null;
+    }
+
+    window.loader = new BootLoader();
+    window.loader.CacheManager();
+} else {
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('blocker').style.display = 'block';
+}
 
 Array.prototype.contains = function (object) {
     var i = this.length;

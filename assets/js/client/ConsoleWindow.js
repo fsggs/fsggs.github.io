@@ -7,41 +7,45 @@ define([
     "use strict";
 
     function ConsoleWindow() {
-        var _w = this;
-
         this.data = {
             id: 'console',
             template: 'assets/layouts/client/w_console.html',
             title: '# Debug console',
             classes: ['console'],
-            content: '',
             width: 450,
             height: 350,
             pos_x: 0,
             pos_y: 5,
             onOpen: function () {
                 $('#console-input').find('> input').focus();
-                $('.scrollbar-box').mCustomScrollbar({
+                $('#console-panel').mCustomScrollbar({
                     axis: 'y',
                     autoHideScrollbar: true
                 });
-                $("#console-panel").mCustomScrollbar('scrollTo', 'last', {
-                    scrollInertia: 0
-                });
-                $(document).on('keydown', null, 'RETURN', keySendToConsole);
+                if ($('#console-panel').hasClass('mCustomScrollbar')) {
+                    scrollConsoleToLast();
+                }
+                $(document).on('keydown', null, 'RETURN', keySendMessageToConsole);
             },
-            beforeRender: function () {
+            beforeRender: function (_w) {
                 _w.data.pos_x = $(window).width() - (_w.data.width + 10);
+                _w.data.pos_y = 5;
             },
             onClose: function () {
-                $(document).on('keydown', keySendToConsole);
+                $(document).on('keydown', null, 'RETURN', keySendMessageToConsole);
             },
             onHide: function () {
-                $(document).on('keydown', keySendToConsole);
+                $(document).on('keydown', null, 'RETURN', keySendMessageToConsole);
             }
         };
 
-        var keySendToConsole = function (event) {
+        var scrollConsoleToLast = function () {
+            $("#console-panel").mCustomScrollbar('scrollTo', 'last', {
+                scrollInertia: 0
+            });
+        };
+
+        var keySendMessageToConsole = function (event) {
             if ($('#console-input > input:focus').length) {
                 event.preventDefault();
                 var message = $('#console-input > input').val();

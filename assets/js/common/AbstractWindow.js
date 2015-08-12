@@ -105,13 +105,13 @@ define([
 
             var max_x = $(window).width() - _w.data.width,
                 max_y = $(window).height() - _w.data.height;
-            if (x + 5 > max_x) {
-                x = _w.data.pos_x += max_x - x - 10;
+            if (x + correctionStep > max_x) {
+                x = _w.data.pos_x += max_x - x - correctionStep - 5;
                 correction = false;
             }
 
-            if (y + 5 > max_y) {
-                y = _w.data.pos_y += max_y - y - 10;
+            if (y + correctionStep > max_y) {
+                y = _w.data.pos_y += max_y - y - correctionStep - 5;
                 correction = false;
             }
 
@@ -131,6 +131,10 @@ define([
             var network = window.application.network;
 
             if (_w.data.id && $('#' + _w.data.id).length) {
+                var position = $('#' + _w.data.id).position();
+                _w.data.pos_x = position.left;
+                _w.data.pos_y = position.top;
+
                 this.activate();
                 windowShow(_w);
                 if (_w.data.onOpen && 'function' === typeof _w.data.onOpen) {
@@ -153,7 +157,7 @@ define([
                         if (callback) callback();
                         fixPosition(_w);
                         if (_w.data.beforeRender && 'function' === typeof _w.data.beforeRender) {
-                            _w.data.beforeRender();
+                            _w.data.beforeRender(_w);
                         }
                         windowShow(_w);
                         if (_w.data.onOpen && 'function' === typeof _w.data.onOpen) {

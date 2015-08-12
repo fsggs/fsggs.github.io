@@ -1,10 +1,17 @@
 CACHE MANIFEST
-# Версия 1.0.0.0014
+# Версия 1.0.0.0016
 
 ../favicon.ico
 ../index.html
 
 CACHE:
+../assets/fonts/OpenSansNormal.eot
+../assets/fonts/OpenSansNormal.otf
+../assets/fonts/OpenSansNormal.svg
+../assets/fonts/OpenSansNormal.ttf
+../assets/fonts/OpenSansNormal.woff
+../assets/fonts/OpenSansNormal.woff2
+
 ../assets/css/libs/jquery.mCustomScrollbar.css
 
 #../assets/js/BootLoader.js

@@ -110,8 +110,6 @@ section#console > #console-input > input {
     height: 25px;
     background: #ccc;
     padding: 0 5px;
-    color: #4A4A4A;
-    font-size: 8pt;
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
 
@@ -122,7 +120,28 @@ section#console > #console-input > input {
 
 section#console > #console-panel p.message {
     padding: 1px 4px;
-    color: #4A4A4A;
-    font-size: 8pt;
     word-break: break-all;
+}
+
+/*---------------------- w Master Server ----------------------*/
+section#master-server > .panel {
+    position: relative;
+    float: left;
+    width: 346px;
+    height: 105px;
+    background: #ccc;
+    border: 1px solid #A19E9E;
+    border-radius: 2px;
+}
+
+section#master-server .panel .button-box {
+    position: absolute;
+    left: 215px;
+    top: 48px;
+}
+
+section#master-server .panel span.status {
+    position: absolute;
+    left: 5px;
+    bottom: 3px;
 }

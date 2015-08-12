@@ -8,10 +8,7 @@ define([
 
     var network = window.application.network;
 
-
     function MasterServerWindow() {
-        var _w = this;
-
         this.data = {
             id: 'master-server',
             template: 'assets/layouts/launcher/w_master_server.html',
@@ -22,19 +19,18 @@ define([
             height: 105,
             pos_x: 0,
             pos_y: 0,
-            onOpen: function() {
+            onOpen: function () {
                 $(document).on('click', '#master-server .check', checkAction);
                 $(document).on('click', '#master-server .apply:not(.disabled)', applyAction);
             },
-            onClose: function() {
+            onClose: function () {
                 $(document).off('click', '#master-server .check', checkAction);
                 $(document).off('click', '#master-server .apply:not(.disabled)', applyAction);
             }
         };
 
-        var closeWindow = function() {
-            _w.data.onClose();
-            $('#master-server').remove();
+        var closeWindow = function () {
+            $('#master-server > .close').removeClass('disabled').trigger('click');
         };
 
         var checkAction = function () {

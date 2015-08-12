@@ -80,8 +80,7 @@ define([
                     var ConsoleWindow = new WindowManager('client/ConsoleWindow');
                     ConsoleWindow.render();
                 } else {
-                    //TODO:: window on hide
-                    $('section.console').hide();
+                    $('section.console > .close').trigger('click');
                 }
             }
         };
@@ -89,8 +88,7 @@ define([
         var keyESCCloseConsole = function (event) {
             if ($('section.console').is(':visible')) {
                 event.preventDefault();
-                //TODO:: window on hide
-                $('section.console').hide();
+                $('section.console > .close').trigger('click');
             }
         };
     }

@@ -1,32 +1,3 @@
-.panel label {
-    display: block;
-
-    margin: 5px 0 0 5px;
-    padding-left: 5px;
-}
-
-.panel label span {
-    color: #4A4A4A;
-    font-size: 8pt;
-}
-
-.panel label input[type=text] {
-    width: 250px;
-    height: 25px;
-    background: #eaeaea;
-    padding: 0 5px;
-    color: #4A4A4A;
-    font-size: 8pt;
-
-    user-select: text;
-    -webkit-user-select: text;
-    -moz-user-select: text;
-}
-
-.panel label span.hint {
-    font-size: 7pt;
-}
-
 /*---------------------- section.Launcher.a ----------------------*/
 section#loader {
     height: 100%;
@@ -84,31 +55,6 @@ section#loader .status {
     left: 0;
     right: 0;
     top: 240px;
-    font-size: 8pt;
-}
 
-/*---------------------- w Master Server ----------------------*/
-section#master-server > .panel {
-    position: relative;
-    float: left;
-    width: 346px;
-    height: 105px;
-    background: #ccc;
-    border: 1px solid #A19E9E;
-    border-radius: 2px;
-}
-
-section#master-server .panel .button-box {
-    position: absolute;
-    left: 215px;
-    top: 48px;
-}
-
-section#master-server .panel span.status {
-    position: absolute;
-    left: 5px;
-    bottom: 3px;
-
-    color: #555;
-    font-size: 8pt;
+    color: #171717;
 }
