@@ -17,8 +17,10 @@ define([
             height: 50,
             pos_x: 0,
             pos_y: 0,
+            beforeRender: false,
             onOpen: false,
-            onClose: false
+            onClose: false,
+            onHide: false
         };
 
         this.setTitle = function (title) {
@@ -103,13 +105,13 @@ define([
 
             var max_x = $(window).width() - _w.data.width,
                 max_y = $(window).height() - _w.data.height;
-            if (x + correctionStep > max_x) {
-                x = _w.data.pos_x += max_x - x - correctionStep - 5;
+            if (x + 5 > max_x) {
+                x = _w.data.pos_x += max_x - x - 10;
                 correction = false;
             }
 
-            if (y + correctionStep > max_y) {
-                y = _w.data.pos_y += max_y - y - correctionStep - 5;
+            if (y + 5 > max_y) {
+                y = _w.data.pos_y += max_y - y - 10;
                 correction = false;
             }
 
@@ -131,6 +133,9 @@ define([
             if (_w.data.id && $('#' + _w.data.id).length) {
                 this.activate();
                 windowShow(_w);
+                if (_w.data.onOpen && 'function' === typeof _w.data.onOpen) {
+                    _w.data.onOpen();
+                }
             } else if (_w.data.template) {
                 network.loadHtml(_w.data.template,
                     function (data) {
@@ -147,7 +152,13 @@ define([
                         }
                         if (callback) callback();
                         fixPosition(_w);
+                        if (_w.data.beforeRender && 'function' === typeof _w.data.beforeRender) {
+                            _w.data.beforeRender();
+                        }
                         windowShow(_w);
+                        if (_w.data.onOpen && 'function' === typeof _w.data.onOpen) {
+                            _w.data.onOpen();
+                        }
                     }
                 );
             }

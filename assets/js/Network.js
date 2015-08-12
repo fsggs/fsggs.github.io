@@ -9,6 +9,7 @@ define([
      * @constructor
      */
     function Network($) {
+        this.gateAPI = 'getVersion.json';
         this.gateUrl = undefined;
 
         this.loadHtml = function (url, callback) {

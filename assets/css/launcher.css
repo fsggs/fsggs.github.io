@@ -88,39 +88,6 @@ section#loader .status {
 }
 
 /*---------------------- w Master Server ----------------------*/
-section#master-server {
-    display: none;
-    position: absolute;
-
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    margin: auto;
-
-    width: 350px;
-    height: 128px;
-    z-index: 499;
-    background: #aaa;
-    border-radius: 4px;
-
-    -webkit-box-shadow: 1px 2px 5px 0 rgba(50, 50, 50, 0.5);
-    -moz-box-shadow: 1px 2px 5px 0 rgba(50, 50, 50, 0.5);
-    box-shadow: 1px 2px 5px 0 rgba(50, 50, 50, 0.5);
-
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-}
-
-section#master-server > h3 {
-    font-size: 10pt;
-    padding: 2px 0 0 5px;
-    color: #F2F2F2;
-    font-weight: 100;
-}
-
 section#master-server > .panel {
     position: relative;
     float: left;

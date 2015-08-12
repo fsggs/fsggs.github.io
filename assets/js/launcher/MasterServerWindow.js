@@ -1,21 +1,45 @@
 define([
     'jquery',
     'common/AbstractWindow',
-    'underscore',
     'jquery.draggable',
-    'jquery.scrollbar',
     'jquery.storage'
 ], function ($, AbstractWindow) {
     "use strict";
 
+    var network = window.application.network;
+
+
     function MasterServerWindow() {
-        var network = window.application.network;
         var _w = this;
-        this.gateAPI = 'getVersion.json';
+
+        this.data = {
+            id: 'master-server',
+            template: 'assets/layouts/launcher/w_master_server.html',
+            title: '# Master Server Config',
+            content: '',
+            classes: ['master-server'],
+            width: 346,
+            height: 105,
+            pos_x: 0,
+            pos_y: 0,
+            onOpen: function() {
+                $(document).on('click', '#master-server .check', checkAction);
+                $(document).on('click', '#master-server .apply:not(.disabled)', applyAction);
+            },
+            onClose: function() {
+                $(document).off('click', '#master-server .check', checkAction);
+                $(document).off('click', '#master-server .apply:not(.disabled)', applyAction);
+            }
+        };
+
+        var closeWindow = function() {
+            _w.data.onClose();
+            $('#master-server').remove();
+        };
 
         var checkAction = function () {
             var url = $('#master-server input[name="server-url"]').val();
-            network.request(url + _w.gateAPI, {}, function (response) {
+            network.request(url + network.gateAPI, {}, function (response) {
                 if (response) {
                     $('#master-server .apply').removeClass('disabled');
                     $('#master-server .status').text('Status: OK. ' + response.name + '(' + response.version + ')');
@@ -27,68 +51,23 @@ define([
         };
         var applyAction = function () {
             var url = $('#master-server input[name="server-url"]').val();
-            network.request(url + _w.gateAPI, {}, function (response) {
+            network.request(url + network.gateAPI, {}, function (response) {
                 if (response) {
                     $('#master-server .apply').removeClass('disabled');
                     network.gateUrl = url;
                     $.localStorage('master-server-url', url);
 
                     $('#master-server .status').text('Status: Saved. Connecting...');
-                    setTimeout(_w.render, 500);
+                    setTimeout(closeWindow, 500);
                 } else {
                     $('#master-server .apply').addClass('disabled');
                     $('#master-server .status').text('Status: Bad. Server not resolving.');
                 }
             });
         };
-
-        this.render = function (callback) {
-            if (!$('#master-server').length) {
-                network.loadHtml('assets/layouts/launcher/w_master_server.html',
-                    function (data) {
-                        $('body').prepend(data);
-                        $('#master-server').show();
-                        $(document).on('click', '#master-server .check', checkAction);
-                        $(document).on('click', '#master-server .apply:not(.disabled)', applyAction);
-                        if (callback) callback();
-                    }
-                );
-            } else {
-                if (($('#master-server').is(':visible'))) {
-                    $('#master-server').hide();
-                    $(document).off('click', '#master-server .check', checkAction);
-                    $(document).off('click', '#master-server .apply:not(.disabled)', applyAction);
-                } else {
-                    $('#master-server').show();
-                    $(document).on('click', '#master-server .check', checkAction);
-                    $(document).on('click', '#master-server .apply:not(.disabled)', applyAction);
-                }
-                if (callback) callback();
-            }
-        }
     }
 
-    MasterServerWindow.prototype = Object.create(AbstractWindow.prototype);
-
-
-    var network = window.application.network;
-    var _w = new MasterServerWindow();
-
-    $(document).ready(function () {
-        if (!$.localStorage('master-server-url')) {
-            _w.render();
-        } else {
-            var url = $.localStorage('master-server-url');
-            network.request(url + _w.gateAPI, {}, function (response) {
-                if (response) {
-                    network.gateUrl = url;
-                    $('#client').trigger('master-server.connected');
-                } else {
-                    _w.render();
-                }
-            });
-        }
-    });
+    MasterServerWindow.prototype = new AbstractWindow;
 
     return MasterServerWindow;
 });

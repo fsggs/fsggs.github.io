@@ -30,11 +30,11 @@ define([
             }
         };
 
-        this.render = function (callback) {
+        this.render = function (callback, onCenter) {
             _w.render(function () {
                 $('.draggable').draggable();
                 if (callback) callback();
-            });
+            }, onCenter);
         };
 
         __construct(WindowManager);
@@ -47,6 +47,7 @@ define([
     });
 
     $(document).on('click', '.window .close:not(".disabled")', function () {
+        //TODO:: dispatch event
         $(this).parent().remove();
     });
 

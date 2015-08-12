@@ -5,6 +5,7 @@ requirejs.config({
         'jquery.draggable': 'libs/jquery.draggable',
         'jquery.scrollbar': 'libs/jquery.mCustomScrollbar.min',
         'jquery.storage': 'libs/jquery.storage',
+        'jquery.hotkeys': 'libs/jquery.hotkeys',
         'FPSMeter': 'libs/fpsmeter/fpsmeter-0.3.1',
         'underscore': 'libs/underscore.js/underscore-1.8.3.min'
     },
@@ -12,18 +13,15 @@ requirejs.config({
         'jquery.draggable': ['jquery'],
         'jquery.scrollbar': ['jquery'],
         'jquery.storage': ['jquery'],
+        'jquery.hotkeys': ['jquery'],
         'underscore': ['jquery']
     }
 });
 
 define('Application', [
-    'jquery'
-], function ($) {
-    /**
-     * Application
-     *
-     * @constructor
-     */
+], function () {
+    "use strict";
+
     function Application() {
         this.network = undefined;
     }
@@ -41,7 +39,6 @@ require([
     'common/ScreenManager',
     'common/WindowManager',
     'launcher/Launcher',
-    'common/key-handler',
     'client/ClientScreen'
 ]);
 
