@@ -1,4 +1,6 @@
-define([], function () {
+define([
+    'jquery'
+], function ($) {
     "use strict";
 
     function LiteConsole() {
@@ -10,9 +12,11 @@ define([], function () {
 
         this.addMessage = function (message, sender) {
             if (undefined === sender) sender = 'Console';
-            message = '[' + sender + ']: ' + message;
+            var timestamp = (new Date()).format("HH:MM:ss");
+            message = timestamp + ' [' + sender + ']: ' + message;
             if (messages.length >= 100) clearHistory();
             messages.add(message);
+            $(document).trigger('console.message.receive', [message]);
             return message
         };
 

@@ -34,22 +34,25 @@ define([
                     scrollConsoleToLast();
                 }
                 $(document).on('keydown', null, 'RETURN', keySendMessageToConsole);
+                $(document).on('console.message.receive', sendMessageToConsole);
             },
             beforeRender: function (_w) {
                 _w.data.pos_x = $(window).width() - (_w.data.width + 10);
                 _w.data.pos_y = 5;
             },
             onClose: function () {
-                $(document).on('keydown', null, 'RETURN', keySendMessageToConsole);
+                $(document).off('keydown', null, 'RETURN', keySendMessageToConsole);
+                $(document).off('console.message.receive', sendMessageToConsole);
             },
             onHide: function () {
-                $(document).on('keydown', null, 'RETURN', keySendMessageToConsole);
+                $(document).off('keydown', null, 'RETURN', keySendMessageToConsole);
+                $(document).off('console.message.receive', sendMessageToConsole);
             }
         };
 
         var loadMessages = function () {
             var messages = '';
-            $.each(lc.getAllMessages(), function(index, message){
+            $.each(lc.getAllMessages(), function (index, message) {
                 messages += "<p class=\"message\">" + message + "</p> \r\n";
             });
 
@@ -62,10 +65,10 @@ define([
             });
         };
 
-        var sendMessageToConsole = function (message) {
-            message = lc.addMessage(message);
+        var sendMessageToConsole = function (event, message) {
             $('#console-panel .mCSB_container')
                 .append('<p class="message">' + message + '</p>');
+            $("#console-panel").mCustomScrollbar('scrollTo', 'last');
         };
 
         var keySendMessageToConsole = function (event) {
@@ -74,8 +77,7 @@ define([
                 var message = $('#console-input > input').val();
                 if (message.trim() != '') {
                     $('#console-input > input').val('');
-                    sendMessageToConsole(message);
-                    $("#console-panel").mCustomScrollbar('scrollTo', 'last');
+                    lc.addMessage(message);
                 }
             }
         };
