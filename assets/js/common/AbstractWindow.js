@@ -17,10 +17,11 @@ define([
             height: 50,
             pos_x: 0,
             pos_y: 0,
-            beforeRender: false,
-            onOpen: false,
-            onClose: false,
-            onHide: false
+            toCenter: false,
+            beforeRender: null,
+            onOpen: null,
+            onClose: null,
+            onHide: null
         };
 
         this.setTitle = function (title) {
@@ -148,7 +149,7 @@ define([
                             _w.data.id = generateID();
                         }
                         $('body').append(template(_w.data));
-                        if (toCenter) _w.toCenter();
+                        if (toCenter || _w.data.toCenter) _w.toCenter();
                         if (undefined !== _w.data.classes && _w.data.classes.length) {
                             $.each(_w.data.classes, function (index, className) {
                                 $('#' + _w.data.id).addClass(className);

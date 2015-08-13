@@ -61,8 +61,8 @@ define([
         }
     });
 
-    $(document).on('mousedown, click', '.window .close:not(".disabled")', function () {
-        var id = $(this).parent().attr('id');
+    $(document).on('mousedown, click', '.window > .close:not(".disabled")', function () {
+        var id = $(this).parent('.window').attr('id');
         var _w = loadWindow(id);
 
         if ($(this).parent().hasClass('modal')) {
@@ -73,13 +73,13 @@ define([
             if (undefined !== _w.data.onHide && 'function' === typeof _w.data.onHide) {
                 _w.data.onHide();
             }
-            $(this).parent().hide();
+            $(this).parent('.window').hide();
         } else {
             if (undefined !== _w.data.onClose && 'function' === typeof _w.data.onClose) {
                 _w.data.onClose();
             }
             windows.remove(id);
-            $(this).parent().remove();
+            $(this).parent('.window').remove();
         }
     });
 

@@ -22,6 +22,12 @@
     cursor: url('../img/cursors/default.cur'), default;
 }
 
+a, a:focus, a:visited, a:active {
+    color: #14ABD0;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 p, span, input {
     font-family: 'Open Sans', Tahoma, serif;
     font-size: 0.7em;
@@ -270,9 +276,7 @@ section.window.error .message {
 
 .window .panel label {
     display: block;
-
     margin: 5px 0 0 5px;
-    padding-left: 5px;
 }
 
 .window .panel label input[type=text] {
@@ -284,4 +288,83 @@ section.window.error .message {
     user-select: text;
     -webkit-user-select: text;
     -moz-user-select: text;
+}
+
+.window .panel .tabs {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.window .panel .tabs:after {
+    content: "";
+    clear: both;
+    display: block;
+    height: 240px;
+}
+
+.window .panel .tabs li {
+    float: left;
+}
+
+.window .panel .tabs li > input {
+    display: none;
+}
+
+.window .panel .tabs li > label {
+    display: inline-block;
+    margin: 5px 3px 0 0;
+
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+
+    color: #F5F5F5;
+    background-color: #AAAAAA;
+    height: 30px;
+    line-height: 30px;
+    padding: 5px 20px;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.window .panel .tabs li:first-child > label {
+    margin: 5px 3px 0 5px;
+}
+
+.window .panel .tabs li:last-child > label {
+    border-right-width: 1px;
+}
+
+.window .panel .tabs .tab-content {
+    display: none;
+    position: absolute;
+    left: 0;
+    margin: 0 1%;
+    height: 99%;
+    width: 98%;
+    overflow-y: auto;
+
+    padding: 8px 0;
+    background-color: #F5F5F5;
+}
+
+.window .panel .tabs .tab-content p {
+    padding: 7px 5px;
+    text-indent: 10px;
+    text-align: justify;
+    font-size: 0.8em;
+}
+
+.window .panel .tabs li > input:checked + label {
+    background-color: #F5F5F5;
+    color: #636363;
+}
+
+.window .panel .tabs li > input:checked ~ .tab-content {
+    display: block;
 }

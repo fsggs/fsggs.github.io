@@ -163,6 +163,10 @@ define('Application', [
         this.console = new LiteConsole();
     }
 
+    Application.prototype.closeLauncher = function() {
+        window.close();
+    };
+
     if (!window.application) {
         window.application = new Application();
     }

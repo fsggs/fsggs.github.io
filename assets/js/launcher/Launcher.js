@@ -28,10 +28,10 @@ define([
                     _w = undefined;
                     break;
                 case 'fn':
-                    if ("function" === typeof method[1]) {
-                        method[1]();
+                    if ("function" === typeof application[method[1]]) {
+                        application[method[1]]();
                     } else {
-                        console.warn('Call undefined function: ' + method[1] + '()');
+                        console.warn('Call undefined application method: ' + method[1] + '()');
                     }
                     break;
                 default:

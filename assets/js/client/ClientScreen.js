@@ -4,9 +4,12 @@ define([
     'jquery.hotkeys',
     'jquery.storage',
 
+    'Network',
     'FPSMeter',
     'client/MasterServerWindow',
     'client/ConsoleWindow',
+
+    'client/LicenseWindow',
     'common/TestWindow'
 ], function ($, WindowManager) {
     "use strict";
@@ -23,16 +26,18 @@ define([
 
         /** Check Master Server **/
         this.checkMasterServer = function () {
-            var MasterServerWindow = new WindowManager('client/MasterServerWindow');
             if (!$.localStorage('master-server-url')) {
+                var MasterServerWindow = new WindowManager('client/MasterServerWindow');
                 MasterServerWindow.render(null, true);
             } else {
                 var url = $.localStorage('master-server-url');
                 network.request(url + network.gateAPI, {}, function (response) {
                     if (response) {
                         network.gateUrl = url;
+                        network.Init();
                         $('#client').trigger('master-server.connected');
                     } else {
+                        var MasterServerWindow = new WindowManager('client/MasterServerWindow');
                         MasterServerWindow.render(null, true);
                     }
                 });

@@ -1,6 +1,5 @@
 define([
-    'jquery',
-    'Application'
+    'jquery'
 ], function ($) {
     /**
      * Network
@@ -9,27 +8,25 @@ define([
      * @constructor
      */
     function Network($) {
+        var lc = application.console;
+
         this.gateAPI = 'getVersion.json';
         this.gateUrl = undefined;
 
-        this.loadHtml = function (url, callback) {
-            $.ajax({
-                url: url,
-                dataType: 'html',
-                success: function (data) {
-                    callback(data);
-                },
-                error: function () {
-                    callback(undefined);
-                }
-            });
+        this.Init = function () {
+            lc.log('Connected to master server at: ' + this.gateUrl, 'Client');
         };
 
-        this.request = function (url, data, callback) {
+        this.loadHtml = function (url, callback) {
+            this.request(url, {}, callback, 'html');
+        };
+
+        this.request = function (url, data, callback, dataType) {
+            dataType = dataType || 'json';
             $.ajax({
                 url: url,
                 data: data,
-                dataType: 'json',
+                dataType: dataType,
                 success: function (data) {
                     callback(data);
                 },
@@ -40,7 +37,7 @@ define([
         };
     }
 
-    if (!window.application.network) {
+    if (undefined == window.application.network) {
         window.application.network = new Network($)
     }
 

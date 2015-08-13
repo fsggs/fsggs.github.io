@@ -1,7 +1,6 @@
 define([
     'jquery',
-    'common/AbstractWindow',
-    'jquery.draggable'
+    'common/AbstractWindow'
 ], function ($, AbstractWindow) {
     "use strict";
 

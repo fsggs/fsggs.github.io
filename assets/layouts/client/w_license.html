@@ -1,0 +1,64 @@
+<section id="<%=id %>" class="window draggable" style="display: none;">
+    <h3 class="title drag-handle"><%=title %></h3>
+
+    <div class="close">×</div>
+
+    <div class="panel">
+        <ul class="tabs">
+            <li>
+                <input type="radio" name="tabs" id="license-tab-eula" checked>
+                <label for="license-tab-eula">EULA</label>
+
+                <div class="tab-content" style="height: 250px;">
+                    <p>Maybe later...</p>
+                </div>
+                <button class="button success close" style="position: absolute; right: 3px; bottom: -58px;">
+                    Confirm & continue
+                </button>
+            </li>
+            <li>
+                <input type="radio" name="tabs" id="license-tab-license">
+                <label for="license-tab-license">License (BSD)</label>
+
+                <div class="tab-content">
+                    <p>Copyright 2015, ZealoN Group, Dimitriy Kalugin. All rights reserved.</p>
+
+                    <p>1) Redistribution and use in source and binary forms, with or without modification, are permitted
+                        provided that the following conditions are met:</p>
+
+                    <p>2) Redistributions of source code must retain the above copyright notice, this list of conditions
+                        and the following disclaimer.</p>
+
+                    <p>3) Redistributions in binary form must reproduce the above copyright notice, this list of conditions
+                        and the following disclaimer in the documentation and/or other materials provided with the
+                        distribution.</p>
+
+                    <p>4) Neither the name of the ZealoN Group nor the names of its contributors may be used to endorse
+                        or promote products derived from this software without specific prior written permission.</p>
+
+                    <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+                        IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+                        FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+                        CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+                        CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+                        SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+                        THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+                        OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+                        POSSIBILITY OF SUCH DAMAGE.</p>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="tabs" id="license-tab-about">
+                <label for="license-tab-about">About</label>
+
+                <div class="tab-content">
+                    <p>Author: Dimitriy Kalugin</p>
+
+                    <p>Copyright 2015, ZealoN Group, Dimitriy Kalugin.</p>
+
+                    <p><a href="http://fsggs.github.io" target="_blank">Github IO</a></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>

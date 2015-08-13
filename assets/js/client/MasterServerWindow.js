@@ -1,24 +1,21 @@
 define([
     'jquery',
     'common/AbstractWindow',
-    'jquery.draggable',
     'jquery.storage'
 ], function ($, AbstractWindow) {
     "use strict";
 
     var network = window.application.network;
+    var lc = window.application.console;
 
     function MasterServerWindow() {
         this.data = {
             id: 'master-server',
             template: 'assets/layouts/client/w_master_server.html',
             title: '# Master Server Config',
-            content: '',
             classes: ['master-server'],
             width: 346,
             height: 105,
-            pos_x: 0,
-            pos_y: 0,
             onOpen: function () {
                 $(document).on('click', '#master-server .check', checkAction);
                 $(document).on('click', '#master-server .apply:not(.disabled)', applyAction);
@@ -35,13 +32,16 @@ define([
 
         var checkAction = function () {
             var url = $('#master-server input[name="server-url"]').val();
+            lc.log('Trying connect to master server ' + url, 'Client');
             network.request(url + network.gateAPI, {}, function (response) {
                 if (response) {
                     $('#master-server .apply').removeClass('disabled');
-                    $('#master-server .status').text('Status: OK. ' + response.name + '(' + response.version + ')');
+                    $('#master-server .status').text('Status: OK. ' + response.name + ' v.(' + response.version + ')');
+                    lc.log('Status: OK. ' + response.name + ' v.(' + response.version + ')', 'Client');
                 } else {
                     $('#master-server .apply').addClass('disabled');
-                    $('#master-server .status').text('Status: Bad. Server not resolving.');
+                    $('#master-server .status').text('Status: Bad. Server not resolving.', 'Client');
+                    lc.log('Status: Bad. Master server not resolving.');
                 }
             });
         };
@@ -55,9 +55,11 @@ define([
 
                     $('#master-server .status').text('Status: Saved. Connecting...');
                     setTimeout(closeWindow, 500);
+                    network.Init();
                 } else {
                     $('#master-server .apply').addClass('disabled');
                     $('#master-server .status').text('Status: Bad. Server not resolving.');
+                    lc.log('Master server not resolving. Change gate...');
                 }
             });
         };
