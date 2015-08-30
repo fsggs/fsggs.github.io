@@ -9,18 +9,22 @@
                 <input type="radio" name="tabs" id="license-tab-eula" checked>
                 <label for="license-tab-eula">EULA</label>
 
-                <div class="tab-content" style="height: 250px;">
-                    <p>Maybe later...</p>
+                <div class="tab-content">
+                    <div class="scrollable">
+                        <p>Maybe later...</p>
+                    </div>
+
+                    <div class="button-fix" style="display: inline-block; width: 50px;">&nbsp;</div>
+                    <button class="button success close" style="position: absolute; right: 3px; bottom: 3px;">
+                        Confirm & continue
+                    </button>
                 </div>
-                <button class="button success close" style="position: absolute; right: 3px; bottom: -58px;">
-                    Confirm & continue
-                </button>
             </li>
             <li>
                 <input type="radio" name="tabs" id="license-tab-license">
                 <label for="license-tab-license">License (BSD)</label>
 
-                <div class="tab-content">
+                <div class="tab-content scrollable">
                     <p>Copyright 2015, ZealoN Group, Dimitriy Kalugin. All rights reserved.</p>
 
                     <p>1) Redistribution and use in source and binary forms, with or without modification, are permitted

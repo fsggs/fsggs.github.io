@@ -421,30 +421,30 @@ yx-axis
 }
 
 .mCSB_scrollTools .mCSB_draggerRail {
-	background-color: #ebebeb;
-	background-color: rgba(0, 0, 0, 0.4);
+	background-color: #f5f5f5;
+	background-color: rgba(245, 245, 245, .5);
 	filter: "alpha(opacity=40)";
 	-ms-filter: "alpha(opacity=40)";
 }
 
 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
-	background-color: #ebebeb;
-	background-color: rgba(235, 235, 235, 0.90);
+	background-color: #a1a1a1;
+	background-color: rgb(170, 170, 170);
 	filter: "alpha(opacity=75)";
 	-ms-filter: "alpha(opacity=75)";
 }
 
 .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar {
-	background-color: #ececec;
-	background-color: rgba(235, 235, 235, 0.85);
+	background-color: #a1a1a1;
+	background-color: rgb(170, 170, 170);
 	filter: "alpha(opacity=85)";
 	-ms-filter: "alpha(opacity=85)";
 }
 
 .mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
 .mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar {
-	background-color: #ebebeb;
-	background-color: rgba(235, 235, 235, 0.90);
+	background-color: #a1a1a1;
+	background-color: rgb(170, 170, 170);
 	filter: "alpha(opacity=90)";
 	-ms-filter: "alpha(opacity=90)";
 }

@@ -321,9 +321,7 @@ section.window.error .message {
 
     color: #F5F5F5;
     background-color: #AAAAAA;
-    height: 30px;
-    line-height: 30px;
-    padding: 5px 20px;
+    padding: 3px 10px;
 
     -webkit-user-select: none;
     -moz-user-select: none;

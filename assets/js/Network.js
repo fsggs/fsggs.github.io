@@ -1,14 +1,14 @@
 define([
-    'jquery'
-], function ($) {
+    'jquery',
+	'common/LiteConsole'
+], function ($, LiteConsole) {
     /**
      * Network
      *
-     * @param $
      * @constructor
      */
-    function Network($) {
-        var lc = application.console;
+    function Network() {
+        var lc = this.lc = new LiteConsole();
 
         this.gateAPI = 'getVersion.json';
         this.gateUrl = undefined;
@@ -35,10 +35,6 @@ define([
                 }
             });
         };
-    }
-
-    if (undefined == window.application.network) {
-        window.application.network = new Network($)
     }
 
     return Network;

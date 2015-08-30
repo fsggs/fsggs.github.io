@@ -13,7 +13,7 @@ define([
             width: 450,
             height: 350,
             onOpen: function () {
-                $('#license .tab-content').mCustomScrollbar({
+                $('#license .scrollable').mCustomScrollbar({
                     axis: 'y'
                 });
             }

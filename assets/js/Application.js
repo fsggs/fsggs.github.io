@@ -154,17 +154,18 @@ requirejs.config({
 });
 
 define('Application', [
-    'common/LiteConsole'
-], function (LiteConsole) {
+	'Network'
+], function (Network) {
     "use strict";
 
     function Application() {
-        this.network = undefined;
-        this.console = new LiteConsole();
+        this.network = new Network();
+        this.console = this.network.lc;
     }
 
     Application.prototype.closeLauncher = function() {
-        window.close();
+	    window.open ('', '_self', '');
+	    window.close();
     };
 
     if (!window.application) {
@@ -179,7 +180,6 @@ define('Application', [
 
 require([
     'Application',
-    'Network',
     'common/ScreenManager',
     'common/WindowManager',
     'launcher/Launcher',
