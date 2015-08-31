@@ -1,6 +1,6 @@
 define([
     'jquery',
-    'common/ErrorWindow',
+    'common/windows/ErrorWindow',
     'underscore'
 ], function ($, ErrorWindow) {
     "use strict";

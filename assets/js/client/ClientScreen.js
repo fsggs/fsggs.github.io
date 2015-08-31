@@ -6,11 +6,11 @@ define([
 
     'Network',
     'FPSMeter',
-    'client/MasterServerWindow',
-    'client/ConsoleWindow',
+    'client/windows/MasterServerWindow',
+    'client/windows/ConsoleWindow',
 
-    'client/LicenseWindow',
-    'common/TestWindow'
+    'client/windows/LicenseWindow',
+    'common/windows/TestWindow'
 ], function ($, WindowManager) {
     "use strict";
 
@@ -26,18 +26,19 @@ define([
 
         /** Check Master Server **/
         this.checkMasterServer = function () {
+	        var MasterServerWindow;
             if (!$.localStorage('master-server-url')) {
-                var MasterServerWindow = new WindowManager('client/MasterServerWindow');
+                MasterServerWindow = new WindowManager('client/windows/MasterServerWindow');
                 MasterServerWindow.render(null, true);
             } else {
                 var url = $.localStorage('master-server-url');
-                network.request(url + network.gateAPI, {}, function (response) {
+                network.request(network.getApiServer(url), {}, function (response) {
                     if (response) {
-                        network.gateUrl = url;
-                        network.Init();
+                        network.setApiServer(url);
+                        network.Init(response);
                         $('#client').trigger('master-server.connected');
                     } else {
-                        var MasterServerWindow = new WindowManager('client/MasterServerWindow');
+                        MasterServerWindow = new WindowManager('client/windows/MasterServerWindow');
                         MasterServerWindow.render(null, true);
                     }
                 });
@@ -59,7 +60,7 @@ define([
         var keyShowMasterWindow = function (event) {
             if (!$('#master-server').is(':visible')) {
                 event.preventDefault();
-                var MasterServerWindow = new WindowManager('client/MasterServerWindow');
+                var MasterServerWindow = new WindowManager('client/windows/MasterServerWindow');
                 MasterServerWindow.render(null, true);
             }
         };
@@ -82,7 +83,7 @@ define([
 
                 if (!$('section.console').is(':visible')) {
                     event.preventDefault();
-                    var ConsoleWindow = new WindowManager('client/ConsoleWindow');
+                    var ConsoleWindow = new WindowManager('client/windows/ConsoleWindow');
                     ConsoleWindow.render();
                 } else {
                     $('section.console > .close').trigger('click');

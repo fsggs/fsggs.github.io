@@ -33,7 +33,7 @@ define([
         var checkAction = function () {
             var url = $('#master-server input[name="server-url"]').val();
             lc.log('Trying connect to master server ' + url, 'Client');
-            network.request(url + network.gateAPI, {}, function (response) {
+            network.request(network.getApiServer(url), {}, function (response) {
                 if (response) {
                     $('#master-server .apply').removeClass('disabled');
                     $('#master-server .status').text('Status: OK. ' + response.name + ' v.(' + response.version + ')');
@@ -47,15 +47,15 @@ define([
         };
         var applyAction = function () {
             var url = $('#master-server input[name="server-url"]').val();
-            network.request(url + network.gateAPI, {}, function (response) {
+            network.request(network.getApiServer(url), {}, function (response) {
                 if (response) {
                     $('#master-server .apply').removeClass('disabled');
-                    network.gateUrl = url;
+                    network.setApiServer(url);
                     $.localStorage('master-server-url', url);
 
                     $('#master-server .status').text('Status: Saved. Connecting...');
                     setTimeout(closeWindow, 500);
-                    network.Init();
+                    network.Init(response);
                 } else {
                     $('#master-server .apply').addClass('disabled');
                     $('#master-server .status').text('Status: Bad. Server not resolving.');

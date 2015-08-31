@@ -2,5 +2,16 @@
   "name": "Server Api Emulation",
   "version": "1.0.0.emu",
   "status": "online",
-  "emulationAPI": true
+  "emulationAPI": true,
+
+  "servers": [
+    {
+      "name": "Test server #0",
+      "address": "ws://127.0.0.1:8000"
+    },
+    {
+      "name": "Test server #1",
+      "address": "ws://zealon.dlinkddns.com:17250"
+    }
+  ]
 }
