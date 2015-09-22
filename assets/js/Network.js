@@ -62,28 +62,39 @@ define([
 			var network = this;
 			if (undefined === socket) {
 				try {
+					lc.log('Trying connect to server ' + network.getServer(), 'Client');
 					socket = new WebSocket(network.getServer());
-
-					socket.onopen = function () {
-						$(window).trigger('socket.connect');
-						lc.log('Connected to ' + network.getServer(), 'socket');
-					};
-
-					socket.onmessage = function (event) {
-						$(window).trigger('socket.message');
-						lc.log('Message: ' + event.data, 'socket');
-					};
-
-					socket.onclose = function () {
-						$(window).trigger('socket.disconnect');
-						lc.log('Disconnected.', 'socket');
-						socket = undefined;
-					};
+					network.listenServer(network);
 				} catch (e) {
-					lc.log('Not found server ' + network.getServer(), 'socket');
+					lc.log('Not found server ' + network.getServer(), 'Client');
 				}
 			} else {
-				lc.log('Already connected to ' + network.getServer(), 'socket');
+				lc.log('Already connected to ' + network.getServer(), 'Client');
+			}
+		};
+
+		this.listenServer = function (network) {
+			if (socket) {
+				socket.onopen = function () {
+					$(window).trigger('socket.connect');
+					lc.log('Connected to ' + network.getServer(), 'Client');
+				};
+
+				socket.onmessage = function (event) {
+					$(window).trigger('socket.message');
+					lc.log('Message: ' + event.data, 'Client');
+				};
+
+				socket.onclose = function (event) {
+					$(window).trigger('socket.disconnect');
+					if (event.wasClean) {
+						lc.log('Disconnected.', 'Client');
+					} else {
+						var info = 'Code: ' + event.code + ((event.reason !== "") ? ', Reason: ' + event.reason : '');
+						lc.log('Disconnected. ' + info, 'Client');
+					}
+					socket = undefined;
+				};
 			}
 		};
 

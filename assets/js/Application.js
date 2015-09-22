@@ -161,6 +161,13 @@ define('Application', [
 	function Application() {
 		this.network = new Network();
 		this.console = this.network.lc;
+
+		this.async = function (async_function, callback) {
+			setTimeout(function () {
+				async_function();
+				if (callback) callback();
+			}, 0);
+		};
 	}
 
 	Application.prototype.close = function () {
