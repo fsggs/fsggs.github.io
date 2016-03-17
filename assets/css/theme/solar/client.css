@@ -1,0 +1,116 @@
+section#client #client-version {
+    color: #ebebeb;
+}
+
+section#client .client-menu-button {
+    background: url('img/btn-menu.png') 0 0 no-repeat;
+    border: none;
+
+    color: #ebebeb;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+section#client .client-menu-button:not(#client-menu-button8) {
+    text-transform: uppercase;
+}
+
+section#client #client-menu-button8 {
+    background: url('img/btn-license.png') 0 0 no-repeat;
+    line-height: 11px;
+    text-indent: -12px;
+    width: 132px;
+    height: 28px;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+/* ----- Window ----- */
+
+section.window .panel .tabs li > label {
+    margin: -5px 3px 0 0;
+    color: #F9F9F9;
+    font-size: 0.9em;
+    border-radius: 2px;
+    border: 1px rgb(95, 140, 150) solid;
+    background-color: rgb(80, 110, 115);
+}
+
+section.window .panel .tabs li > label:not(.disabled):hover,
+section.window .panel .tabs li > label:not(.disabled).hover {
+    color: #F9F9F9;
+    border: 1px rgb(82, 128, 138) solid;
+    background-color: rgb(65, 93, 98);
+}
+
+section.window .panel .tabs li:first-child > label {
+    margin: -5px 3px 0 75px;
+}
+
+section.window .panel .tabs li > input:checked + label {
+    border: 1px rgb(100, 100, 100) solid;
+    background-color: rgb(225, 230, 230);
+}
+
+section.window .panel .tabs li > input:checked:not(.disabled):hover + label,
+section.window .panel .tabs li > input:checked:not(.disabled).hover + label {
+    color: #636363;
+    border: 1px rgb(100, 100, 100) solid;
+    background-color: rgb(225, 230, 230);
+}
+
+section.window#license,
+section.window#console {
+    background: url("img/window-1.png") 0 0 no-repeat;
+    width: 345px;
+    height: 354px;
+}
+
+section.window#license .panel .tabs .tab-content {
+    background: none;
+    height: 290px;
+}
+
+section.window#license .panel .tabs .tab-content #eula-confirm {
+    position: absolute;
+    right: 3px;
+    bottom: 6px;
+}
+
+section.window.error {
+    background: url("img/window-system.png") 0 0 no-repeat;
+    width: 345px;
+    height: 72px;
+}
+
+section.window.error .panel .message {
+    line-height: 60px;
+    color: #F9F9F9;
+}
+
+section.window#console > #console-panel {
+    width: 96%;
+    height: 82%;
+    padding: 0 5px;
+    margin: 14px 0 0 0;
+    background: none;
+    border: none;
+}
+
+section#console > #console-input {
+    width: 96%;
+    background: none;
+    border: none;
+}
+
+section#console > #console-input > input {
+    width: 96%;
+    margin-left: 5px;
+    background: none;
+    border-top: 1px #ccc solid;
+}
+

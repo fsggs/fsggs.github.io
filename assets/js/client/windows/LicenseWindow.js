@@ -8,7 +8,7 @@ define([
         this.data = {
             id: 'license',
             template: 'assets/layouts/client/w_license.html',
-            title: '# License',
+            title: 'License',
             toCenter: true,
             width: 450,
             height: 350,

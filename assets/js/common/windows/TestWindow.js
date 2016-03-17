@@ -8,7 +8,7 @@ define([
         this.data = {
             id: undefined,
             template: 'assets/layouts/common/w_test.html',
-            title: '# Test',
+            title: 'Test',
             content: 'TEST ! WINDOW',
             width: 200,
             height: 50,

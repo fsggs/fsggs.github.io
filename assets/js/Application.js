@@ -184,7 +184,7 @@ define('Application', [
 	}
 
 	application.console.log('Application started.', 'Launcher');
-	application.console.addMessage('You using ' + navigator.version[0] + '(' + navigator.version[1] + ')', 'Client');
+	application.console.addMessage('You using ' + window.navigator.version[0] + '(' + window.navigator.version[1] + ')', 'Client');
 
 	return Application;
 });

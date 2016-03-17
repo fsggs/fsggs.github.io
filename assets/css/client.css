@@ -62,9 +62,9 @@ section#client .client-menu-button {
 
 section#client .client-menu-button:not(.disabled):hover,
 section#client .client-menu-button:not(.disabled).hover {
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .125);
-	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .125);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .125);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .125);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .125);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .125);
 }
 
 section#client .client-menu-button:not(.disabled):active,
@@ -78,7 +78,19 @@ section#client .client-menu-button.disabled {
     opacity: .65;
 }
 
+section#client #client-version {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 0.8em;
+}
+
 /*---------------------- w Console ----------------------*/
+section#console {
+    width: 450px;
+    height: 350px;
+}
+
 section#console > #console-panel {
     position: relative;
     float: left;
@@ -124,6 +136,11 @@ section#console > #console-panel p.message {
 }
 
 /*---------------------- w Master Server ----------------------*/
+section#master-server {
+    width: 346px;
+    height: 105px;
+}
+
 section#master-server > .panel {
     position: relative;
     float: left;
@@ -147,6 +164,17 @@ section#master-server .panel span.status {
 }
 
 /*---------------------- w License ----------------------*/
+#license.window {
+    width: 450px;
+    height: 350px;
+}
+
 #license.window .panel .tabs .tab-content {
-	height: 300px;
+    height: 300px;
+}
+
+#license.window .panel .tabs .tab-content #eula-confirm {
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
 }
