@@ -14,7 +14,7 @@ define([
         this.data = {
             id: 'console',
             template: 'assets/layouts/client/w_console.html',
-            title: '# Debug console',
+            title: 'Debug console',
             classes: ['console'],
             width: 450,
             height: 350,

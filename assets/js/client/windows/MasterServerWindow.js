@@ -14,7 +14,7 @@ define([
         this.data = {
             id: 'master-server',
             template: 'assets/layouts/client/w_master_server.html',
-            title: '# Master Server Config',
+            title: 'Master Server Config',
             classes: ['master-server'],
             width: 346,
             height: 105,

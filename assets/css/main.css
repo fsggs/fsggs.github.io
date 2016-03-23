@@ -115,6 +115,12 @@ html, body {
     padding: 2px 0 0 5px;
 }
 
+section.window .title:before {
+    display: inline-block;
+    content: '#';
+    padding-right: 4px;
+}
+
 .window .panel {
     display: inline-block;
     position: relative;
@@ -136,13 +142,20 @@ html, body {
     width: 20px;
     height: 14px;
     background: #DB6E6E;
-    text-align: center;
-    line-height: 13px;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
-    color: white;
     cursor: pointer;
     border: 1px solid rgba(155, 155, 155, 0.5);
+}
+
+.window > .close:after {
+    display: block;
+    content: '×';
+    margin-top: -2px;
+    text-align: center;
+    color: white;
+
+    width: 20px;
 }
 
 .window > .close:not(.disabled):hover {
@@ -263,6 +276,11 @@ html, body {
 }
 
 /*---------------------- w Error ----------------------*/
+section.window.error {
+    width: 350px;
+    height: 80px;
+}
+
 section.window.error .message {
     text-align: center;
     width: 100%;

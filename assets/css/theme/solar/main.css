@@ -1,0 +1,71 @@
+@import url('launcher.css');
+@import url('client.css');
+
+body {
+    background: url('img/bg-effects.png') 0 0 repeat;
+    overflow: hidden;
+}
+
+section.window .button.success {
+    color: #F9F9F9;
+    border: 1px rgb(95, 140, 150) solid;
+    background-color: rgb(80, 110, 115);
+}
+
+section.window .button.success:not(.disabled):hover,
+section.window .button.success:not(.disabled).hover {
+    color: #F9F9F9;
+    border: 1px rgb(82, 128, 138) solid;
+    background-color: rgb(65, 93, 98);
+}
+
+section.window {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+section.window > .close {
+    background: url("img/window-close-btn.png") 0 0 no-repeat;
+    width: 22px;
+    height: 28px;
+
+    top: 1px;
+
+    border: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+section.window > .close:after {
+    display: none;
+    content: '';
+}
+
+section.window > .close:not(.disabled):hover {
+    background-position: -22px 0;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+section.window .title:before {
+    content: '';
+}
+
+section.window .title {
+    color: #ebebeb;
+    text-transform: uppercase;
+    line-height: 30px;
+    text-indent: 5px;
+}
+
+section.window .panel {
+    width: 98%;
+    height: 90%;
+    background: none;
+    border: none;
+}

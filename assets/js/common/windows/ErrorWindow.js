@@ -10,7 +10,7 @@ define([
         this.data = {
             id: undefined,
             template: 'assets/layouts/common/w_error.html',
-            title: '# Error',
+            title: 'Error',
             classes: ['error'],
             content: '',
             width: 350,

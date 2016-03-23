@@ -17,7 +17,7 @@ define([
 
 			gateProtocol: 'ws',
 			gateAddress: '127.0.0.1',
-			gatePort: 8000,
+			gatePort: 32500,
 			gatePath: ''
 		};
 
