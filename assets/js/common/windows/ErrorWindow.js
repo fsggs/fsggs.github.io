@@ -5,6 +5,8 @@ define([
     "use strict";
 
     function ErrorWindow() {
+        AbstractWindow.call(this);
+
         this.data = {
             id: undefined,
             template: 'assets/layouts/common/w_error.html',
@@ -16,7 +18,8 @@ define([
         };
     }
 
-    ErrorWindow.prototype = new AbstractWindow;
+    ErrorWindow.prototype = Object.create(AbstractWindow.prototype);
+    ErrorWindow.prototype.constructor = ErrorWindow;
 
     return ErrorWindow;
 });

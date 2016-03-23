@@ -5,6 +5,8 @@ define([
     "use strict";
 
     function LicenseWindow() {
+        AbstractWindow.call(this);
+
         this.data = {
             id: 'license',
             template: 'assets/layouts/client/w_license.html',
@@ -20,7 +22,8 @@ define([
         };
     }
 
-    LicenseWindow.prototype = new AbstractWindow;
+    LicenseWindow.prototype = Object.create(AbstractWindow.prototype);
+    LicenseWindow.prototype.constructor = LicenseWindow;
 
     return LicenseWindow;
 });

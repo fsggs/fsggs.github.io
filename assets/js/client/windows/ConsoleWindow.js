@@ -9,6 +9,8 @@ define([
     var lc = application.console;
 
     function ConsoleWindow() {
+        AbstractWindow.call(this);
+
         this.data = {
             id: 'console',
             template: 'assets/layouts/client/w_console.html',
@@ -83,7 +85,8 @@ define([
         };
     }
 
-    ConsoleWindow.prototype = new AbstractWindow;
+    ConsoleWindow.prototype = Object.create(AbstractWindow.prototype);
+    ConsoleWindow.prototype.constructor = ConsoleWindow;
 
     return ConsoleWindow;
 });

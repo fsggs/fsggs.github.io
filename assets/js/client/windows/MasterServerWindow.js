@@ -9,6 +9,8 @@ define([
     var lc = window.application.console;
 
     function MasterServerWindow() {
+        AbstractWindow.call(this);
+
         this.data = {
             id: 'master-server',
             template: 'assets/layouts/client/w_master_server.html',
@@ -65,7 +67,8 @@ define([
         };
     }
 
-    MasterServerWindow.prototype = new AbstractWindow;
+    MasterServerWindow.prototype = Object.create(AbstractWindow.prototype);
+    MasterServerWindow.prototype.constructor = MasterServerWindow;
 
     return MasterServerWindow;
 });

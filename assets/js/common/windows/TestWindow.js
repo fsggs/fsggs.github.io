@@ -5,6 +5,8 @@ define([
     "use strict";
 
     function TestWindow() {
+        AbstractWindow.call(this);
+
         this.data = {
             id: undefined,
             template: 'assets/layouts/common/w_test.html',
@@ -17,7 +19,8 @@ define([
         };
     }
 
-    TestWindow.prototype = new AbstractWindow;
+    TestWindow.prototype = Object.create(AbstractWindow.prototype);
+    TestWindow.prototype.constructor = TestWindow;
 
     return TestWindow;
 });
