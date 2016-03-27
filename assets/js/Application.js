@@ -170,9 +170,11 @@ define('Application', [
 		};
 	}
 
-	Application.prototype.close = function () {
-		window.open('', '_self', '');
-		window.close();
+	Application.prototype.close = function () {		
+		if (window.navigator.version[0] == 'Chrome') {
+			$('.client-menu-button.exit').hide();
+			application.console.log('Chrome not support close application directly from browser.', 'Client');
+		} else window.open('', '_self').close();
 	};
 
 	Application.prototype.connect = function () {

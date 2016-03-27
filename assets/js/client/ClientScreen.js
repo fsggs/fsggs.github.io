@@ -101,7 +101,7 @@ define([
 
     var screen = new ClientScreen();
 
-    $(document).ready(function () {
+    $(document).ready(function () {		
         screen.checkMasterServer();
         screen.showFPS();
 
